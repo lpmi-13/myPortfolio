@@ -5,31 +5,30 @@ module.exports = {
   'serverport': 8089,
 
   'styles': {
-    'src' : 'app/styles/**/*.scss',
+    'src' : 'src/app/sass/**/*.scss',
     'dest': 'build/css'
   },
 
   'scripts': {
-    'src' : 'app/js/**/*.js',
+    'src' : 'src/app/**/*.js',
     'dest': 'build/js'
   },
 
   'images': {
-    'src' : 'app/images/**/*',
+    'src' : 'src/images/**/*',
     'dest': 'build/images'
   },
 
   'fonts': {
-    'src' : ['app/fonts/**/*'],
+    'src' : ['src/fonts/**/*'],
     'dest': 'build/fonts'
   },
 
   'views': {
     'watch': [
-      'app/index.html',
-      'app/views/**/*.html'
+      'src/**/*.html'
     ],
-    'src': 'app/views/**/*.html',
+    'src': '/src/**/*.html',
     'dest': 'app/js'
   },
 
@@ -44,7 +43,7 @@ module.exports = {
   },
 
   'browserify': {
-    'entries'   : ['./app/js/main.js'],
+    'entries'   : ['./src/app/app.js'],
     'bundleName': 'main.js',
     'sourcemap' : true
   },
