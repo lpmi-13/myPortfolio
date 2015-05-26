@@ -1,0 +1,12 @@
+<div class="my-avatar"
+	 ng:class="{
+	 	'thumb': !!isThumb,
+	 	'icon': !!isIcon
+	 }">
+	<img ng:if="model.avatarUrl"
+		 ng:src="{{ $parent.model.avatarUrl }}">
+	<div ng:if="!model.avatarUrl"
+		 class="initials">
+		{{ model | myInitials }}
+	</div>
+</div>

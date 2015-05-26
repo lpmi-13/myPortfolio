@@ -1,0 +1,32 @@
+
+@mixin button ($color: #444, $bgColor: #ddd, $width: auto, $height: 25px, $fontSize: 15px) {
+	display: inline-block;
+	height: $height;
+	line-height: $height;
+	padding: 0 15px;
+	width: $width;
+	text-align: center;
+	font-size: $fontSize;
+	background: $bgColor;
+	color: $color;
+	border: solid 1px $bgColor;
+
+	&:hover {
+		color: darken($color, 5%);
+		background: lighten($bgColor, 5%);
+	}
+
+	&:focus {
+		color: darken($color, 5%);
+		background: lighten($bgColor, 5%);
+	}
+
+	@include onFocus;
+}
+
+@mixin onFocus ($border: solid 1px white) {
+	&:focus {	
+		outline: none;
+		border: $border;
+	}
+}

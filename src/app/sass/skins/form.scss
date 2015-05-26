@@ -1,0 +1,11 @@
+
+.my-skin-form {
+	label {
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	button {
+		@include button();
+	}
+}

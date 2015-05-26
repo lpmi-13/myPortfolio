@@ -1,0 +1,14 @@
+
+body {
+	font-family: $mainFont;
+	color: $mainColor;
+	background: $mainBackgroundColor;
+}
+
+
+// skins
+@import "./skins/form.scss";
+
+// views
+@import "../views/main/_main.scss";
+@import "../views/detail/_detail.scss";
