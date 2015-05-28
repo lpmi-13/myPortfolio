@@ -29,7 +29,7 @@ module.exports = {
       'src/**/*.html'
     ],
     'src': '/src/**/*.html',
-    'dest': 'app/js'
+    'dest': 'src/js'
   },
 
   'gzip': {
@@ -44,7 +44,7 @@ module.exports = {
 
   'browserify': {
     'entries'   : ['./src/app/app.js'],
-    'bundleName': 'main.js',
+    'bundleName': 'the.js',
     'sourcemap' : true
   },
 
