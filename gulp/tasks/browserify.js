@@ -16,6 +16,7 @@ var handleErrors = require('../util/handleErrors');
 var browserSync  = require('browser-sync');
 var debowerify   = require('debowerify');
 var ngAnnotate   = require('browserify-ngannotate');
+var stringify    = require('stringify');
 
 // Based on: http://blog.avisi.nl/2014/04/25/how-to-keep-a-fast-build-with-browserify-and-reactjs/
 function buildScript(file) {
@@ -42,6 +43,8 @@ function buildScript(file) {
     'brfs',
     'bulkify'
   ];
+
+  bundler.transform(stringify(['.hjs', '.html', '.txt']));
 
   transforms.forEach(function(transform) {
     bundler.transform(transform);

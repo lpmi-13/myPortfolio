@@ -1,4 +1,4 @@
 {
 	"localisation_keyMissing"         : "Localisation key missing: \"#{key}\" (#{locale})",
-	"myProjectExample"                : "Example"
+	"myApp_localisationInitSuccess"   : "Localisation service initialised successfully ;)"
 }

@@ -5,7 +5,7 @@ var template = require('./main.html');
 // services
 var projectService = require('../../services/projectService');
 // sub components
-var avatarComponent = require('../../components/avatar/avatar');
+// var avatarComponent = require('../../components/avatar/avatar');
 
 
 
@@ -16,8 +16,8 @@ var avatarComponent = require('../../components/avatar/avatar');
 // <namespace:type-name></namespace:type-name> (examples: <wt:component-avatar></wt:component-avatar> or <dino:view-detail></dino:view-detail> )
 
 module.exports = angular.module('myApp.views.main', [
-	projectService.name,
-	avatarComponent.name
+	projectService.name
+	// avatarComponent.name
 ])
 .directive('myViewMain', function (
 	MyProjectService,
