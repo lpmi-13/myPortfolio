@@ -2,15 +2,24 @@
 	
 	<my:navigation></my:navigation>
 
-	<h2>{{
-		'myViewDetail_heading' | localise: {
-			name: details.title
-		}
-	}}</h2>
-	<my:avatar data-model="details" data-is-thumb="true"></my:avatar>
+	<section ng:if="!Detail.details">
+		LOADING...
+	</section>
 
-	<h3>{{ details.summary }}</h3>
-	<a href="{{ details.summary }}">{{ details.website }}</a>
-	<p>{{ details.description }}</p>
+	<section ng:if="!!Detail.details">
+		
+		<h2>{{
+			'myViewDetail_heading' | localise: {
+				name: Detail.details.title
+			}
+		}}</h2>
+		<my:avatar data-model="Detail.details" data-is-thumb="true"></my:avatar>
+
+		<h3>{{ Detail.details.summary }}</h3>
+		<a href="{{ details.summary }}">{{ Detail.details.website }}</a>
+		<p>{{ Detail.details.description }}</p>
+		
+	</section>
+
 
 </div>

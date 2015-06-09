@@ -27,28 +27,26 @@ module.exports = angular.module('myApp.views.detail', [
 	return {
 		restrict: 'E',
 		template: template,
-		controller: 'MyViewDetailCtrl',
+		controller: 'MyViewDetailCtrl as Detail',
 		replace: true,
 		scope: {
 			key: '='
 		},
 		link: function (scope, elem, attrs, controller) {
-
-			console.log(scope.key);
-
-			controller.getDetails(scope.key);
 		}
 	};
 })
 .controller('MyViewDetailCtrl', function (
 	$scope,
+	$routeParams,
 	MyProjectService
 ) {
+	var Detail = this;
 
-	this.getDetails = function (id) {
+	Detail.getDetails = function (id) {
 		return MyProjectService.get(id)
 			.then(function (details) {
-				$scope.details = details;
+				Detail.details = details;
 				// console.log('retrieved', $scope.details);
 			})
 			.catch(function (err) {
@@ -56,14 +54,17 @@ module.exports = angular.module('myApp.views.detail', [
 			});
 	};
 
-	this.updateDetails = function (id, details) {
+	Detail.updateDetails = function (id, details) {
 		return MyProjectService.update(id, details)
 			.then(function (details) {
-				$scope.details = details;
+				Detail.details = details;
 				// console.log('updated', $scope.details);
 			})
 			.catch(function (err) {
 				console.warn('updateDetails error', id, err);
 			});
 	};
+
+	Detail.key = $routeParams.key;
+	Detail.getDetails(Detail.key);
 });
