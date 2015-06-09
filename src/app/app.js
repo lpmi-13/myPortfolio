@@ -19,25 +19,23 @@ angular.module('myApp', [
 		viewDetail.name,
 		'ngRoute'
 	])
-	.config(
-		[
-			'$routeProvider', function (
-				$routeProvider
-			) {
-				$routeProvider
-					.when('/', { template: '<my:view-main></my:view-main>' })
-					.when('/detail/:id', {
-						template: function (params) {
-							return '<my:view-detail data-key="' + params.id + '"></my:view-detail>';
-						}
-					})
-					.otherwise({ redirectTo: '/' });
-			}
-		]
-	)
+	.config([
+		'$routeProvider', function (
+			$routeProvider
+		) {
+			$routeProvider
+				.when('/', { template: '<my:view-main></my:view-main>' })
+				.when('/project/:id', {
+					template: function (params) {
+						return '<my:view-detail data-key="' + params.id + '"></my:view-detail>';
+					}
+				})
+				.otherwise({ redirectTo: '/' });
+		}
+	])
 	.run(function (
-		LocalisationService,
-		$filter
+		$filter,
+		LocalisationService
 	) {
 		console.log('running!');
 		LocalisationService.init('en-GB')

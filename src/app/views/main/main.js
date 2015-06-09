@@ -5,7 +5,8 @@ var template = require('./main.html');
 // services
 var projectService = require('../../services/projectService');
 // sub components
-// var avatarComponent = require('../../components/avatar/avatar');
+var navigationComponent = require('../../components/navigation/navigation');
+var avatarComponent = require('../../components/avatar/avatar');
 
 
 
@@ -16,8 +17,9 @@ var projectService = require('../../services/projectService');
 // <namespace:type-name></namespace:type-name> (examples: <wt:component-avatar></wt:component-avatar> or <dino:view-detail></dino:view-detail> )
 
 module.exports = angular.module('myApp.views.main', [
-	projectService.name
-	// avatarComponent.name
+	projectService.name,
+	navigationComponent.name,
+	avatarComponent.name
 ])
 .directive('myViewMain', function (
 	MyProjectService,
@@ -34,12 +36,8 @@ module.exports = angular.module('myApp.views.main', [
 
 			controller.getProjects();
 
-			scope._onCreateClicked = function () {
-				controller.createProject(scope.newProject);
-			};
-
 			scope._onRowClicked = function (project) {
-				$location.path('detail/' + project._id);
+				$location.path('project/' + project.id);
 			};
 
 			// silly chaining but good test!!
@@ -103,30 +101,6 @@ module.exports = angular.module('myApp.views.main', [
 			})
 			.catch(function (err) {
 				console.warn('getProjects error', params, err);
-			});
-	};
-
-	this.getProject = function (id) {
-		return MyProjectService.get(id)
-			.catch(function (err) {
-				console.warn('getProject error', id, err);
-			});
-	};
-
-	this.updateProject = function (id, params) {
-		return MyProjectService.update(id, params)
-			.catch(function (err) {
-				console.warn('updateProject error', id, err);
-			});
-	};
-
-	this.createProject = function (params) {
-		return MyProjectService.create(params)
-			.then(function (details) {
-				self.getProjects();
-			})
-			.catch(function (err) {
-				console.warn('createProject error', params, err);
 			});
 	};
 });

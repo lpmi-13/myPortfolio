@@ -3,6 +3,9 @@
 
 var angular = require('angular');
 var clientStorage = require('./clientStorage');
+var initMockData = {
+	projects: require('../data/portfolio.json')
+};
 
 module.exports = angular.module('services.mockDataHandler', [
 	clientStorage.name
@@ -19,9 +22,9 @@ module.exports = angular.module('services.mockDataHandler', [
 	// If they don't exist, populate them with the initial stub data
 	for (var column in initMockData) {
 
-		if (!ClientStorage.has(column)) {
+		// if (!ClientStorage.has(column)) {
 			ClientStorage.set(column, initMockData[column]);
-		}
+		// }
 
 		dataCache[column] = ClientStorage.get(column) || [];
 
@@ -34,12 +37,12 @@ module.exports = angular.module('services.mockDataHandler', [
 		},
 
 		assignKey: function (entry) {
-			entry._id = '' + Math.floor(Math.random() * 10000000000);
+			entry.id = '' + Math.floor(Math.random() * 10000000000);
 			return entry;
 		},
 
 		getIsKeyMatch: function (entry, key) {
-			return entry._id === key; // key from url will be a string
+			return entry.id === key; // key from url will be a string
 		},
 
 		hasColumn: function (column) {
@@ -361,13 +364,3 @@ module.exports = angular.module('services.mockDataHandler', [
 	
 	return new DataHandler();
 });
-
-// investigate possiblity of using localStorage here for a more persistent interactive data source
-var initMockData = {
-	'projects': [
-		{"_id":"1000","name":"Godzilla","where":"Yokahama, US","avatarUrl":"/images/godzilla.jpg"},
-		{"_id":"1001","name":"Sulley","where":"Monstropolis","avatarUrl":"/images/sulley.jpg"},
-		{"name":"Mike Wasowski","where":"Monters Inc","_id":"3682794682","avatarUrl":"/images/mikewazowski.png"},
-		{"name":"Jabba the Hut","where":"Far far away...","_id":"8329490381","avatarUrl":"/images/jabba.png"}
-	]
-};
