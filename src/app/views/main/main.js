@@ -37,7 +37,7 @@ module.exports = angular.module('myApp.views.main', [
 			controller.getProjects();
 
 			scope._onRowClicked = function (project) {
-				$location.path('project/' + project.id);
+				$location.path('detail/' + project.id);
 			};
 
 			// silly chaining but good test!!

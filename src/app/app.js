@@ -25,9 +25,10 @@ angular.module('myApp', [
 		) {
 			$routeProvider
 				.when('/', { template: '<my:view-main></my:view-main>' })
-				.when('/project/:id', {
+				.when('/detail/:key', {
 					template: function (params) {
-						return '<my:view-detail data-key="' + params.id + '"></my:view-detail>';
+						console.log(params);
+						return '<my:view-detail data-key="' + params.key + '"></my:view-detail>';
 					}
 				})
 				.otherwise({ redirectTo: '/' });

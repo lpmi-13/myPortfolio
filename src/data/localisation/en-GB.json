@@ -2,5 +2,6 @@
 	"localisation_keyMissing"         : "Localisation key missing: \"#{key}\" (#{locale})",
 	"myApp_localisationInitSuccess"   : "Localisation service initialised successfully ;)",
 
-	"myViewMain_projects"             : "Projects"
+	"myViewMain_projects"             : "Projects",
+	"myViewDetail_heading"            : "#{name} - in more detail"
 }

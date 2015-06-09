@@ -1,55 +1,16 @@
 <div class="view-detail">
 	
 	<my:navigation></my:navigation>
-	
+
 	<h2>{{
 		'myViewDetail_heading' | localise: {
-			name: details.name
+			name: details.title
 		}
 	}}</h2>
 	<my:avatar data-model="details" data-is-thumb="true"></my:avatar>
-	<form class="form-horizontal" role="form">
-		<div class="form-group">
-			<label for="view-detail_name" class="col-sm-4 control-label">{{'myViewDetail_labelName' | localise}}</label>
-			<div class="col-sm-6">
-				<input
-					ng:model="details.name"
-					type="text"
-					class="form-control"
-					id="view-detail_name"
-					placeholder="{{'myViewDetail_labelName' | localise}}">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="view-detail_where" class="col-sm-4 control-label">{{'myViewDetail_labelWhere' | localise}}</label>
-			<div class="col-sm-6">
-				<input
-					ng:model="details.where"
-					type="text"
-					class="form-control"
-					id="view-detail_where"
-					placeholder="{{'myViewDetail_labelWhere' | localise}}">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="view-detail_avatar" class="col-sm-4 control-label">{{'myViewDetail_labelAvatar' | localise}}</label>
-			<div class="col-sm-6">
-				<input
-					ng:model="details.avatarUrl"
-					type="text"
-					class="form-control"
-					id="view-detail_avatar"
-					placeholder="{{'myViewDetail_labelAvatar' | localise}}">
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-offset-4 col-sm-6">
-				<button
-					type="submit"
-					class="btn btn-default"
-					ng:click="_onUpdateClicked()"
-				>{{'myViewDetail_buttonUpdate' | localise}}</button>
-			</div>
-		</div>
-	</form>
+
+	<h3>{{ details.summary }}</h3>
+	<a href="{{ details.summary }}">{{ details.website }}</a>
+	<p>{{ details.description }}</p>
+
 </div>

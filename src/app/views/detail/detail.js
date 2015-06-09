@@ -34,11 +34,9 @@ module.exports = angular.module('myApp.views.detail', [
 		},
 		link: function (scope, elem, attrs, controller) {
 
-			controller.getDetails(scope.key);
+			console.log(scope.key);
 
-			scope._onUpdateClicked = function () {
-				controller.updateDetails(scope.key, scope.details);
-			};
+			controller.getDetails(scope.key);
 		}
 	};
 })
