@@ -1,8 +1,14 @@
 
 body {
-	// font-family: $mainFont;
-	// color: $mainColor;
-	// background: $mainBackgroundColor;
+	font-family: $mainFont;
+	color: $mainColor;
+	background: $mainBackgroundColor;
+}
+
+.page-view {
+	width: 80%;
+	margin: 20px auto;
+	background: white;
 }
 
 
