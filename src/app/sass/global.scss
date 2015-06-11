@@ -8,7 +8,7 @@ body {
 .page-view {
 	width: 80%;
 	margin: 20px auto;
-	background: white;
+	font-size: 50px;
 }
 
 
@@ -18,3 +18,4 @@ body {
 // views
 @import "../views/main/_main.scss";
 @import "../views/detail/_detail.scss";
+@import "../components/navigation/_navigation.scss";
