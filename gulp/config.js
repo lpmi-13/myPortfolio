@@ -5,7 +5,7 @@ module.exports = {
   'serverport': 8089,
 
   'styles': {
-    'watch' : 'src/app/sass/**/*.scss',
+    'watch' : 'src/app/**/*.scss',
     'src' : 'src/app/sass/app.scss',
     'dest': 'build/css'
   },
