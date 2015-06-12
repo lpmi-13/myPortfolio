@@ -6,9 +6,28 @@ body {
 }
 
 .page-view {
-	width: 80%;
-	margin: 20px auto;
-	font-size: 50px;
+	font-size: 20px;
+
+	// main page header
+	> header {
+		padding: $gutterSize 0;
+		color: $headerColor;
+		background: $headerBackgroundColor;
+
+		h1 {
+			margin: 0 $gutterSize;
+			font-size: $headerFontSize - 10;
+
+			strong {
+				font-size: $headerFontSize;
+			}
+		}
+	}
+
+	// main page content
+	> section {
+		padding: $gutterSize;
+	}
 }
 
 

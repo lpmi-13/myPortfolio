@@ -5,22 +5,15 @@
 		<h1><strong>Will Thirkettle</strong> UI Developer</h1>
 	</header>
 
-	<h3>{{'myViewMain_projects' | localise}}</h3>
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th></th>
-				<th>Name</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng:repeat="project in projects"
-				ng:click="_onRowClicked(project)">
-				<td>
-					<my:avatar data-model="project" data-is-icon="true"></my:avatar>
-				</td>
-				<td>{{ project.title }}</td>
-			</tr>
-		</tbody>
-	</table>
+	<section>
+		<h3>{{'myViewMain_projects' | localise}}</h3>
+		<ul>
+			<li ng:repeat="project in projects"
+				ng:click="_onRowClicked(project)"
+				class="project-list-item">
+				<my:avatar data-model="project" data-is-icon="true"></my:avatar>
+				<div>{{ project.title }}</div>
+			</li>
+		</ul>
+	</section>
 </div>

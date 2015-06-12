@@ -1,4 +1,23 @@
 
 .my-navigation {
-	
+	font-size: $headerNavFontSize;
+
+	ul {
+		margin-bottom: $gutterSize*2;
+		@extend %clearfix;
+
+		li {
+			float: left;
+
+			a {
+				cursor: pointer;
+				display: block;
+				padding: 10px $gutterSize;
+
+				&:hover {
+					background: #bbb;
+				}
+			}
+		}
+	}
 }

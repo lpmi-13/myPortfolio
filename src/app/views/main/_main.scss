@@ -1,4 +1,15 @@
 
 
 .view-main {
+
+
+	.project-list-item {
+		padding: $gutterSize;
+		cursor: pointer;
+
+		&:hover {
+			color: #bbb;
+			background: #ddd;
+		}
+	}
 }
