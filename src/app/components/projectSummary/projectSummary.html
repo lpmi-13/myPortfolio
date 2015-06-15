@@ -1,0 +1,11 @@
+<div class="my-project-summary">				
+	<my:avatar data-model="Project.model" data-is-icon="true"></my:avatar>
+	<h3>
+		<strong>{{ Project.model.title }}</strong>.
+		{{ Project.model.summary }}
+	</h3>
+	<hr>
+	<ul ng:repeat="tag in Project.model.tags">
+		<li>{{ tag }}</li>
+	</ul>
+</div>

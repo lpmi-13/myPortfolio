@@ -8,15 +8,13 @@
 
 	<section ng:if="!!Detail.details">
 		
-		<h2>{{
-			'myViewDetail_heading' | localise: {
-				name: Detail.details.title
-			}
-		}}</h2>
+		<h2>
+			<a title="Go to: {{ Detail.details.website }}" href="{{ Detail.details.website }}">{{ Detail.details.title }}</a>
+		</h2>
+		
 		<my:avatar data-model="Detail.details" data-is-thumb="true"></my:avatar>
 
 		<h3>{{ Detail.details.summary }}</h3>
-		<a href="{{ details.summary }}">{{ Detail.details.website }}</a>
 		<p>{{ Detail.details.description }}</p>
 		
 	</section>

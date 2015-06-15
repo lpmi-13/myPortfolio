@@ -8,8 +8,9 @@
 			<li ng:repeat="project in projects"
 				ng:click="_onRowClicked(project)"
 				class="project-list-item">
-				<my:avatar data-model="project" data-is-icon="true"></my:avatar>
-				<div>{{ project.title }}</div>
+				<my:project-summary
+					data-model="project"
+				></my:project-summary>
 			</li>
 		</ul>
 	</section>
