@@ -1,11 +1,15 @@
 
-$mainFont: "Helvetica Neue";
+$mainFont: 'Open Sans Condensed', 'Helvetica Neue', sans-serif;
+$mainFontWeight: 300;
+$mainFontWeightStrong: 700;
 $mainColor: #DDD;
 $mainBackgroundColor: #d5d5d5;
 $gutterSize: 15px;
 
 $headerColor: white;
 $headerBackgroundColor: #eee;
+$headerFont: 'Oswald', serif;
+$headerWeight: 700;
 $headerFontSize: 40px;
 
 $headerNavFontSize: 25px;

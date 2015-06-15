@@ -1,8 +1,13 @@
 
 body {
 	font-family: $mainFont;
+	font-weight: 300;
 	color: $mainColor;
 	background: $mainBackgroundColor;
+}
+
+strong {
+	font-weight: $mainFontWeightStrong;
 }
 
 .page-view {
@@ -16,10 +21,13 @@ body {
 
 		h1 {
 			margin: 0 $gutterSize;
-			font-size: $headerFontSize - 10;
+			font-family: $headerFont;
+			font-weight: $headerWeight;
+			font-size: $headerFontSize;
+			color: rgba($headerColor, 0.5);
 
 			strong {
-				font-size: $headerFontSize;
+				color: $headerColor;
 			}
 		}
 	}
