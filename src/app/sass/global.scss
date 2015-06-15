@@ -13,25 +13,6 @@ strong {
 .page-view {
 	font-size: 20px;
 
-	// main page header
-	> header {
-		padding: $gutterSize 0;
-		color: $headerColor;
-		background: $headerBackgroundColor;
-
-		h1 {
-			margin: 0 $gutterSize;
-			font-family: $headerFont;
-			font-weight: $headerWeight;
-			font-size: $headerFontSize;
-			color: rgba($headerColor, 0.5);
-
-			strong {
-				color: $headerColor;
-			}
-		}
-	}
-
 	// main page content
 	> section {
 		padding: $gutterSize;
@@ -45,4 +26,5 @@ strong {
 // views
 @import "../views/main/_main.scss";
 @import "../views/detail/_detail.scss";
+@import "../components/header/_header.scss";
 @import "../components/navigation/_navigation.scss";

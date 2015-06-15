@@ -1,0 +1,19 @@
+// main page header
+.my-header {
+	padding: $gutterSize 0;
+	color: $headerColor;
+	background: $headerBackgroundColor;
+
+	h1 {
+		margin: 0 $gutterSize;
+		font-family: $headerFont;
+		font-weight: $headerWeight;
+		font-size: $headerFontSize;
+		color: rgba($headerColor, 0.5);
+
+		strong {
+			color: $headerColor;
+			display: block;
+		}
+	}
+}
