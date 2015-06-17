@@ -1,0 +1,27 @@
+
+
+.view-about {
+
+
+	> article {
+
+		@extend %clearfix;
+
+		> section {
+
+			@media only screen and (min-width: $breakPoint) {
+
+				float: left;
+				width: 60%;
+
+				&:first-child {
+					width: 40%;
+					padding-right: $gutterSize;
+				}
+
+
+			}
+		}
+	}
+
+}

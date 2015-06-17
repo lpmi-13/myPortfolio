@@ -13,14 +13,25 @@ strong {
 a {
 	cursor: pointer;
 	color: $linkColor;
+
+	&:hover {
+		color: $highlightColor;
+	}
 }
 
 .page-view {
 	font-size: 20px;
 
 	// main page content
-	> section {
+	> article {
 		padding: $gutterSize;
+		background: white;
+
+		@media only screen and (min-width: $breakPoint) {
+			width: 80%;
+			max-width: 1280px;
+			margin: 0 auto;
+		}
 
 		h2 {
 			font-size: 30px;
@@ -41,6 +52,8 @@ a {
 // views
 @import "../views/main/_main.scss";
 @import "../views/detail/_detail.scss";
+@import "../views/about/_about.scss";
 @import "../components/avatar/_avatar.scss";
 @import "../components/header/_header.scss";
 @import "../components/navigation/_navigation.scss";
+@import "../components/tumblrBlogPost/_tumblrBlogPost.scss";

@@ -2,16 +2,24 @@
 $mainFont: 'Open Sans Condensed', 'Helvetica Neue', sans-serif;
 $mainFontWeight: 300;
 $mainFontWeightStrong: 700;
-$mainColor: #eee;
+$mainColor: #69747C;
 $mainBackgroundColor: #ccc;
-$linkColor: orange;
+$linkColor: #6BAA75;
+$highlightColor: #84DD63;
 $gutterSize: 15px;
 
-$headerColor: white;
-$headerBackgroundColor: #eee;
+$headerColor: #545454;
+$headerBackgroundColor: #FCF12F;
 $headerFont: 'Oswald', serif;
 $headerWeight: 700;
 $headerFontSize: 40px;
 
 $headerNavFontSize: 25px;
 $headerNavItemColor: $linkColor;
+
+
+
+$breakPoint: 800px;
+
+@media only screen and (min-width: $breakPoint) {
+}

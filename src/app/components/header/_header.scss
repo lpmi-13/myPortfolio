@@ -4,8 +4,18 @@
 	color: $headerColor;
 	background: $headerBackgroundColor;
 
-	h1 {
+	> header {
 		margin: 0 $gutterSize;
+
+		@media only screen and (min-width: $breakPoint) {
+			width: 80%;
+			max-width: 1280px;
+			margin: 0 auto;
+			padding: $gutterSize;
+		}
+	}
+
+	h1 {
 		font-family: $headerFont;
 		font-weight: $headerWeight;
 		font-size: $headerFontSize;

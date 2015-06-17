@@ -2,11 +2,11 @@
 	
 	<my:header></my:header>
 	
-	<section ng:if="!Detail.details">
+	<article ng:if="!Detail.details">
 		LOADING...
-	</section>
+	</article>
 
-	<section ng:if="!!Detail.details">
+	<article ng:if="!!Detail.details">
 		
 		<h2>
 			<a title="Go to: {{ Detail.details.website }}" href="{{ Detail.details.website }}">{{ Detail.details.title }}</a>
@@ -17,7 +17,7 @@
 		<h3>{{ Detail.details.summary }}</h3>
 		<p>{{ Detail.details.description }}</p>
 		
-	</section>
+	</article>
 
 
 </div>
