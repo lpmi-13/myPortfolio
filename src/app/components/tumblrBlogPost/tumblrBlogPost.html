@@ -1,4 +1,6 @@
 <div class="my-tumblr-blog-post">
 	{{ Post.model.slug }}
+	<image src="{{ Post.model.photos[0].alt_sizes[0].url }}" width="100%">
+	<p>{{ (Post.model.timestamp * 1000) | date: 'dd MMM yyyy' }}</p>
 	<hr>
 </div>
