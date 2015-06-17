@@ -12,7 +12,7 @@ strong {
 
 a {
 	cursor: pointer;
-	color: orange;
+	color: $linkColor;
 }
 
 .page-view {
@@ -21,6 +21,16 @@ a {
 	// main page content
 	> section {
 		padding: $gutterSize;
+
+		h2 {
+			font-size: 30px;
+			margin-bottom: 20px;
+		}
+
+		h3 {
+			font-size: 20px;
+			margin-bottom: 10px;
+		}
 	}
 }
 

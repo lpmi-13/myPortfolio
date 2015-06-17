@@ -6,7 +6,7 @@ var template = require('./tumblrBlogPost.html');
 module.exports = angular.module('myApp.components.tumblrBlogPost', [
 ])
 .directive('myTumblrBlogPost', function (
-
+	$sce
 ) {
 	return {
 		restrict: 'E',
@@ -17,6 +17,10 @@ module.exports = angular.module('myApp.components.tumblrBlogPost', [
 			model: '=?'
 		},
 		link: function (scope, elem, attrs, controller) {
+
+			scope._getCaption = function () {
+				return $sce.trustAsHtml(scope.model.caption)
+			};
 		}
 	};
 })

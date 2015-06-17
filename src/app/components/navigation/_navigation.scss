@@ -15,7 +15,8 @@
 				padding: 10px $gutterSize;
 
 				&:hover {
-					background: #bbb;
+					color: white;
+					background: $headerNavItemColor;
 				}
 			}
 		}

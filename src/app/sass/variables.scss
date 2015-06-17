@@ -2,8 +2,9 @@
 $mainFont: 'Open Sans Condensed', 'Helvetica Neue', sans-serif;
 $mainFontWeight: 300;
 $mainFontWeightStrong: 700;
-$mainColor: #DDD;
-$mainBackgroundColor: #d0d0d0;
+$mainColor: #eee;
+$mainBackgroundColor: #ccc;
+$linkColor: orange;
 $gutterSize: 15px;
 
 $headerColor: white;
@@ -13,3 +14,4 @@ $headerWeight: 700;
 $headerFontSize: 40px;
 
 $headerNavFontSize: 25px;
+$headerNavItemColor: $linkColor;
