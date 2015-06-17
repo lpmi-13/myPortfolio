@@ -8,6 +8,7 @@ var filters = require('./filters');
 var localisationService = require('./services/localisationService');
 
 var viewMain = require('./views/main/main');
+var viewAbout = require('./views/about/about');
 var viewDetail = require('./views/detail/detail');
 
 angularRoute;
@@ -16,6 +17,7 @@ angular.module('myApp', [
 		filters.name,
 		localisationService.name,
 		viewMain.name,
+		viewAbout.name,
 		viewDetail.name,
 		'ngRoute'
 	])
@@ -25,6 +27,7 @@ angular.module('myApp', [
 		) {
 			$routeProvider
 				.when('/', { template: '<my:view-main></my:view-main>' })
+				.when('/about', { template: '<my:view-about></my:view-about>' })
 				.when('/detail/:key', {
 					template: function (params) {
 						console.log(params);

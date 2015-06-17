@@ -1,0 +1,15 @@
+<div class="view-about page-view">
+
+	<my:header></my:header>
+
+	<section>
+		<h3>About</h3>
+		<ul>
+			<li ng:repeat="post in blogPosts">
+				<my:tumblr-blog-post
+					data-model="post"
+				></my:tumblr-blog-post>
+			</li>
+		</ul>
+	</section>
+</div>
