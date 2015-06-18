@@ -28,7 +28,7 @@ angular.module('myApp', [
 			$routeProvider
 				.when('/', { template: '<my:view-main></my:view-main>' })
 				.when('/about', { template: '<my:view-about></my:view-about>' })
-				.when('/detail/:key', {
+				.when('/project/:key', {
 					template: function (params) {
 						console.log(params);
 						return '<my:view-detail data-key="' + params.key + '"></my:view-detail>';
