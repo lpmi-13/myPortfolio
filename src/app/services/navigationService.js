@@ -11,11 +11,13 @@ module.exports = angular.module('myApp.services.navigationService', [
 			return [
 				{
 					title: 'Projects',
-					url: '/#/'
+					url: '/#/',
+					path: '/'
 				},
 				{
 					title: 'About',
-					url: '/#/about'
+					url: '/#/about',
+					path: '/about'
 				},
 				{
 					title: 'Resume',
