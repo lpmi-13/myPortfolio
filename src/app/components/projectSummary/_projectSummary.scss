@@ -1,0 +1,28 @@
+.my-project-summary {
+	
+	@extend %clearfix;
+
+	.my-avatar {
+		float: left;
+		width: 25%;
+
+		img {
+			max-width: 100%;
+		}
+	}
+
+	> section {
+		float: right;
+		width: 3%;
+	}
+
+	.my-project-summary_tags {
+		@extend %clearfix;
+	}
+
+		.my-project-summary_tag {
+			float: left;
+			margin-right: 15px;
+
+		}
+}

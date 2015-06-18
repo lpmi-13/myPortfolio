@@ -3,14 +3,22 @@
 	<my:header></my:header>
 
 	<article>
-		<h3>{{'myViewMain_projects' | localise}}</h3>
+		<h2>Where I'm at...</h2>
+		<h3>I am currently working with <a href="http://fathomlondon.com">Fathom London</a>, helping to develop products in financial services - using the latest front-end technologies including AngularJS, HTML5, CSS3, SASS and Gulp. Happily writing object oriented JavaScript, using responsive design techniques and working in an Agile development environment :)</h3>
+		<p>Previously I was employed by <a href="http://tagcmd.com">Tag:cmd</a> as a Senior Front End Developer, working on a hugely complex single page app using OO JavaScript, Backbone.js, node.js, twitter bootstrap, LESS, communicating with a RESTful API</p>
+		<p>Before Tag, I was a Senior Developer at <a href="http://werinteractive.com">We R Interactive</a>, building social games for multiple platforms, including <a href="http://lyroke.com">Lyroke</a> and <a href="http://iamplayr.com">I AM PLAYR</a>.</p>
+		<p>I specialise in front-end/client-side development for web and mobile... <a href="/#/about">Read more about me</a></p>
+
+		<hr>
+
+		<h2>{{'myViewMain_projects' | localise}}</h2>
 		<ul>
 			<li ng:repeat="project in projects"
-				ng:click="_onRowClicked(project)"
 				class="project-list-item">
 				<my:project-summary
 					data-model="project"
 				></my:project-summary>
+				<hr>
 			</li>
 		</ul>
 	</article>

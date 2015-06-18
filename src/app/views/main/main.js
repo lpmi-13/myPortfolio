@@ -22,8 +22,7 @@ module.exports = angular.module('myApp.views.main', [
 	projectSummaryComponent.name
 ])
 .directive('myViewMain', function (
-	MyProjectService,
-	$location
+	MyProjectService
 ) {
 	return {
 		restrict: 'E',
@@ -35,56 +34,6 @@ module.exports = angular.module('myApp.views.main', [
 		link: function (scope, elem, attrs, controller) {
 
 			controller.getProjects();
-
-			scope._onRowClicked = function (project) {
-				$location.path('project/' + project.id);
-			};
-
-			// silly chaining but good test!!
-
-			// controller.getProjects()
-			// 	.then(function (origProjectsData) {
-			// 		console.log('origProjects ', origProjectsData);
-					
-			// 		controller.getProject(1001)
-			// 			.then(function (getProjectData) {
-			// 				console.log('getProject ', getProjectData);
-
-			// 				controller.updateProject(getProjectData.data._id, {
-			// 						extras: 'I like armadillos'
-			// 					})
-			// 					.then(function (updateProjectData) {
-			// 						console.log('updateProject ', updateProjectData);
-
-			// 						controller.createProject({
-			// 								name: 'Newbie',
-			// 								where: 'No-where'
-			// 							})
-			// 							.then(function (createProjectData) {
-			// 								console.log('createProject ', createProjectData);
-
-			// 								controller.getProjects()
-			// 									.then(function (getProjectsData) {
-			// 										console.log('getProjects ', getProjectsData);
-													
-			// 										MyProjectService.delete(1001)
-			// 											.then(function (deleteData) {
-			// 												console.log('MyProjectService.delete ', deleteData);
-
-			// 												controller.getProjects()
-			// 													.then(function (getProjectsAfterDeleteData) {
-			// 														console.log('getProjects ', getProjectsAfterDeleteData);
-			// 													});
-			// 											})
-			// 											.catch(function (err) {
-			// 												console.warn('MyProjectService.delete error', 1001, err);
-			// 											});
-			// 									});
-			// 							});
-
-			// 					});
-			// 			});
-			// 	});
 		}
 	};
 })

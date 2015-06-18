@@ -8,7 +8,7 @@ module.exports = angular.module('myApp.components.projectSummary', [
 	avatarComponent.name
 ])
 .directive('myProjectSummary', function (
-
+	$location
 ) {
 	return {
 		restrict: 'E',
@@ -19,6 +19,10 @@ module.exports = angular.module('myApp.components.projectSummary', [
 			model: '=?'
 		},
 		link: function (scope, elem, attrs, controller) {
+
+			scope._onLinkClicked = function () {
+				$location.path('project/' + scope.model.id);
+			};
 		}
 	};
 })

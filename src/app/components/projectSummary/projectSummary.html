@@ -1,11 +1,15 @@
 <div class="my-project-summary">				
 	<my:avatar data-model="Project.model" data-is-icon="true"></my:avatar>
-	<h3>
-		<strong>{{ Project.model.title }}</strong>.
-		{{ Project.model.summary }}
-	</h3>
-	<hr>
-	<ul ng:repeat="tag in Project.model.tags">
-		<li>{{ tag }}</li>
-	</ul>
+	<section>
+		<h3 ng:click="_onLinkClicked()">
+			<a>
+				<strong>{{ Project.model.title }}</strong>.
+				{{ Project.model.summary }}
+			</a>
+		</h3>
+		<ul class="my-project-summary_tags">
+			<li class="my-project-summary_tag"
+				ng:repeat="tag in Project.model.tags"><small>{{ tag }}</small></li>
+		</ul>
+	</section>
 </div>
