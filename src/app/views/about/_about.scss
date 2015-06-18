@@ -12,14 +12,19 @@
 			@media only screen and (min-width: $breakPoint) {
 
 				float: left;
-				width: 60%;
+				width: 65%;
 
 				&:first-child {
-					width: 40%;
-					padding-right: $gutterSize;
+					width: 35%;
+					padding-right: $gutterSizeMid;
 				}
+			}
 
+			@media only screen and (min-width: $breakPointWide) {
 
+				&:first-child {
+					padding-right: $gutterSizeWide;
+				}
 			}
 		}
 	}

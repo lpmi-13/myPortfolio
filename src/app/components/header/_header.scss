@@ -5,25 +5,55 @@
 	background: $headerBackgroundColor;
 
 	> header {
-		margin: 0 $gutterSize;
+		padding: $gutterSize;
+
+		h1 {
+			font-size: $headerFontSize + 2;
+			color: rgba($headerColor, 0.5);
+
+			strong {
+				font-size: $headerFontSize + 10;
+				font-family: $headerFont;
+				font-weight: $headerWeight;
+				color: $headerColor;
+				display: block;
+				margin-bottom: 5px;
+			}
+		}
 
 		@media only screen and (min-width: $breakPoint) {
+			padding: $gutterSizeMid;
+			// margin: 0 $gutterSizeMid;
+
+			h1 {
+				font-size: $headerFontSize * 1.2;
+				font-family: $headerFont;
+				font-weight: 400;
+				// color: rgba($headerColor, 0.5);
+
+				strong {
+					font-size: $headerFontSize * 1.2;
+					font-weight: $headerWeight;
+					// color: $headerColor;
+					display: inline;
+				}
+			}
+		}
+
+		@media only screen and (min-width: $breakPointWide) {
 			width: 80%;
 			max-width: 1280px;
 			margin: 0 auto;
-			padding: $gutterSize;
-		}
-	}
+			padding: $gutterSizeWide;
 
-	h1 {
-		font-family: $headerFont;
-		font-weight: $headerWeight;
-		font-size: $headerFontSize;
-		color: rgba($headerColor, 0.5);
+			h1 {
+				font-size: $headerFontSize * 1.5;
 
-		strong {
-			color: $headerColor;
-			display: block;
+				strong {
+					font-size: $headerFontSize * 1.5;
+				}
+			}
 		}
+
 	}
 }

@@ -19,27 +19,50 @@ a {
 	}
 }
 
+hr {
+	height: 2px;
+	border-style: solid;
+	border-width: 0 0 1px 0;
+	border-color: white;
+	background: rgba(black, 0.1);
+	margin: $gutterSize 0;
+}
+
 .page-view {
 	font-size: 20px;
 
 	// main page content
 	> article {
 		padding: $gutterSize;
-		background: white;
+		background: $pageBackgroundColor;
+		line-height: 1.4;
+		text-align: justify;
+		font-size: 20px;
 
 		@media only screen and (min-width: $breakPoint) {
+			// width: 80%;
+			padding: $gutterSizeMid;
+		}
+
+		@media only screen and (min-width: $breakPointWide) {
 			width: 80%;
 			max-width: 1280px;
 			margin: 0 auto;
+			padding: $gutterSizeWide;
 		}
 
 		h2 {
 			font-size: 30px;
-			margin-bottom: 20px;
+			font-family: $headingFont;
+			font-weight: $headingWeight;
+			margin-bottom: 10px;
 		}
 
 		h3 {
-			font-size: 20px;
+			font-size: 18px;
+			line-height: 1.5;
+			font-family: $subHeadingFont;
+			font-weight: $subHeadingWeight;
 			margin-bottom: 10px;
 		}
 	}
