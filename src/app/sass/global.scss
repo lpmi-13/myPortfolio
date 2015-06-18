@@ -4,6 +4,7 @@ body {
 	font-weight: 300;
 	color: $mainColor;
 	background: $mainBackgroundColor;
+	overflow-y: scroll;
 }
 
 strong {
@@ -64,6 +65,14 @@ hr {
 			font-family: $subHeadingFont;
 			font-weight: $subHeadingWeight;
 			margin-bottom: 10px;
+		}
+
+		p {
+			margin-bottom: 10px;
+		}
+
+		small {
+			font-size: 80%;
 		}
 	}
 }
