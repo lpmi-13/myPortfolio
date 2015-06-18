@@ -1,6 +1,10 @@
 <nav class="my-navigation">
 	<ul>
-		<li ng:repeat="item in items">
+		<li ng:repeat="item in items"
+			ng:class="{
+				'-selected': _getIsSelected(item)
+			}"
+		>
 			<a ng:href="{{item.url}}">{{ item.title }}</a>
 		</li>
 	</ul>

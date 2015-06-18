@@ -21,6 +21,10 @@ module.exports = angular.module('myApp.components.navigation', [
 		},
 		link: function (scope, elem, attrs, controller) {
 			scope.items = NavigationService.getMainNavItems();
+
+			scope._getIsSelected = function (item) {
+				return Boolean(item.path === $location.path());
+			};
 		}
 	};
 })

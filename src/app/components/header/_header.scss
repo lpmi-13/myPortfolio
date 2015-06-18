@@ -1,24 +1,35 @@
 // main page header
 .my-header {
-	padding: $gutterSize 0;
 	color: $headerColor;
 	background: $headerBackgroundColor;
 
 	> header {
 		padding: $gutterSize;
 
-		h1 {
-			font-size: $headerFontSize + 2;
-			color: rgba($headerColor, 0.5);
+		hr {
+			background-color: rgba(black, 0.1);
+			border-color: rgba(white, 0.4);
+			margin-top: 5px;
+		}
 
-			strong {
-				font-size: $headerFontSize + 10;
-				font-family: $headerFont;
-				font-weight: $headerWeight;
-				color: $headerColor;
+		h1 {
+			margin-top: 10px;
+			font-size: $headerFontSize + 2;
+			
+			a {
+				color: rgba($headerColor, 0.5);
 				display: block;
-				margin-bottom: 5px;
+
+				strong {
+					font-size: $headerFontSize + 10;
+					font-family: $headerFont;
+					font-weight: $headerWeight;
+					color: $headerColor;
+					display: block;
+					margin-bottom: 5px;
+				}
 			}
+
 		}
 
 		@media only screen and (min-width: $breakPoint) {
@@ -31,11 +42,15 @@
 				font-weight: 400;
 				// color: rgba($headerColor, 0.5);
 
-				strong {
-					font-size: $headerFontSize * 1.2;
-					font-weight: $headerWeight;
-					// color: $headerColor;
+				a {
 					display: inline;
+
+					strong {
+						font-size: $headerFontSize * 1.2;
+						font-weight: $headerWeight;
+						// color: $headerColor;
+						display: inline;
+					}	
 				}
 			}
 		}
@@ -49,7 +64,7 @@
 			h1 {
 				font-size: $headerFontSize * 1.5;
 
-				strong {
+				a strong {
 					font-size: $headerFontSize * 1.5;
 				}
 			}

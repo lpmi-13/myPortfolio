@@ -3,7 +3,7 @@
 	font-size: $headerNavFontSize;
 
 	ul {
-		margin-bottom: $gutterSize*2;
+		margin-top: -$gutterSize;
 		@extend %clearfix;
 
 		li {
@@ -13,11 +13,19 @@
 				cursor: pointer;
 				display: block;
 				padding: 10px 0;
-				color: rgba(white, 0.8);
+				color: rgba(white, 0.7);
 
 				&:hover {
-					color: white;
+					color: rgba(white, 0.85);
 					background: $headerNavItemColor;
+				}
+			}
+
+			&.-selected {
+				a,
+				a:hover {
+					cursor: default;
+					color: white;
 				}
 			}
 
