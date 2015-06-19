@@ -1,0 +1,8 @@
+<div class="my-social-networks">
+	<ul>
+		<li ng:repeat="network in socialNetworks"
+			class="-{{ network.id }}">
+			<a href="{{ network.url }}" title="{{ network.name }}"><span>{{ network.name }}</span></a>
+		</li>
+	</ul>
+</div>

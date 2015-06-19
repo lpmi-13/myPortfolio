@@ -2,6 +2,83 @@
 
 .view-main {
 
+	.my-social-networks {
+
+		text-align: center;
+		margin-bottom: $gutterSize;
+		
+		li {
+			display: inline-block;
+			padding: 5px;
+			border-radius: 50px;
+			background: rgba(black, 0.1);
+			transition: all 0.25s ease;
+
+
+			&:hover {
+				background: rgba(#029FFC, 1);
+				background: rgba(black, 0.5);
+			}
+
+			margin-right: 10px;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			@media only screen and (min-width: $breakPoint) {
+				border-radius: 20px;
+				margin-right: $gutterSizeMid;
+	
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+
+			a {
+				display: block;
+				width: 90px;
+				height: 90px;
+				background-size: contain;
+				background-position: left center;
+				background-repeat: no-repeat;
+				line-height: 90px;
+				transition: all 0.25s ease;
+
+				span {
+					display: none;
+				}
+
+				@media only screen and (min-width: $breakPoint) {
+
+					padding-left: 103px;
+					padding-right: 18px;
+					width: auto;
+
+					span {
+						display: inline;
+						font-size: 30px;
+						font-family: $headerFont;
+						font-weight: $headerWeight;
+						color: white;
+					}
+				}
+			}
+
+			&.-github a {
+				background-image: url('/images/github_large.png');
+			}
+
+			&.-linkedin a {
+				background-image: url('/images/linkedin_large.png');
+			}
+
+			&.-twitter a {
+				background-image: url('/images/twitter_large.png');
+			}
+		}
+	}
+
 
 	.project-list-item {
 	}
