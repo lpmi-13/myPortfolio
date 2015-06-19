@@ -15,6 +15,11 @@ module.exports = {
     'dest': 'build/js'
   },
 
+  'php': {
+    'src' : 'src/server/**/*.php',
+    'dest': 'build/server'
+  },
+
   'images': {
     'src' : 'src/images/**/*',
     'dest': 'build/images'

@@ -81,7 +81,7 @@ module.exports = angular.module('myApp.services.blogService', [
 			deferred.resolve(mCache.tweets);
 		}
 		else {
-			$.getJSON('/src/services/getTweets.php', function (tweets) {
+			$.getJSON('/server/getTweets.php', function (tweets) {
 				var posts = [];
 
 				console.log(tweets);
@@ -148,15 +148,15 @@ module.exports = angular.module('myApp.services.blogService', [
 		getPosts: function () {
 			var deferred = $q.defer();
 			var posts = [];
-			// var tweetsPromise = getTweets().then(function (tweets) {
-			// 	posts = posts.concat(tweets);
-			// });
+			var tweetsPromise = getTweets().then(function (tweets) {
+				posts = posts.concat(tweets);
+			});
 
 			var tumblrPromise = getTumblr().then(function (tumblrPosts) {
 				posts = posts.concat(tumblrPosts);
 			});
 
-			$q.all([tumblrPromise]).finally(function () {
+			$q.all([tweetsPromise, tumblrPromise]).finally(function () {
 				// sort the posts
 				deferred.resolve(posts);
 			});
