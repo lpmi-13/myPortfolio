@@ -1,10 +1,8 @@
 <?php
 
-var_dump('dsgdsggsgsg');
-
 session_start();
 date_default_timezone_set('UTC');
-require_once("twitteroauth/twitteroauth.php"); //Path to twitteroauth library
+require_once("twitteroauth.php"); //Path to twitteroauth library
  
 $twitteruser = "thirkettle";
 $notweets = 5;
