@@ -8,6 +8,7 @@ var blogService = require('../../services/blogService');
 // sub components
 var headerComponent = require('../../components/header/header');
 var tumblrBlogPostComponent = require('../../components/tumblrBlogPost/tumblrBlogPost');
+var tweetComponent = require('../../components/tweet/tweet');
 
 
 
@@ -19,7 +20,8 @@ var tumblrBlogPostComponent = require('../../components/tumblrBlogPost/tumblrBlo
 
 module.exports = angular.module('myApp.views.about', [
 	blogService.name,
-	tumblrBlogPostComponent.name
+	tumblrBlogPostComponent.name,
+	tweetComponent.name
 ])
 .directive('myViewAbout', function (
 	$location

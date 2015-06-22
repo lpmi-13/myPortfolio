@@ -23,7 +23,10 @@
 			<ul>
 				<li ng:repeat="post in blogPosts"
 				>
-
+					<my:tweet
+						ng:if="post.__postType === 'TWEET'"
+						data-model="post"
+					></my:tweet>
 
 					<my:tumblr-blog-post
 						ng:if="post.__postType === 'TUMBLR'"
