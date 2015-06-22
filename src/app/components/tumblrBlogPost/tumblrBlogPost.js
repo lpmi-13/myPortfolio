@@ -19,7 +19,7 @@ module.exports = angular.module('myApp.components.tumblrBlogPost', [
 		link: function (scope, elem, attrs, controller) {
 
 			scope._getCaption = function () {
-				return $sce.trustAsHtml(scope.model.caption)
+				return $sce.trustAsHtml(scope.model.caption);
 			};
 		}
 	};
