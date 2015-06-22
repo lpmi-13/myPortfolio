@@ -45,6 +45,11 @@ module.exports = angular.module('myApp.services.blogService', [
 
 		// $post.append($('<p>').html(tweetHtml));
 
+
+		// need to add some common attributes for sorting
+		tweet.__postType = 'TWEET';
+		tweet.__timeStamp = tweet.created_at * 1000;
+
 		return tweet;
 	}
 
@@ -70,6 +75,10 @@ module.exports = angular.module('myApp.services.blogService', [
 		// case 'video':
 		// break;
 		// };
+
+		// need to add some common attributes for sorting
+		tumblrPost.__postType = 'TUMBLR';
+		tumblrPost.__timeStamp = tumblrPost.timestamp * 1000;
 
 		return tumblrPost;
 	}
@@ -158,6 +167,12 @@ module.exports = angular.module('myApp.services.blogService', [
 
 			$q.all([tweetsPromise, tumblrPromise]).finally(function () {
 				// sort the posts
+
+
+				posts = posts.sort(function (a, b) {
+					return b.__timeStamp - a.__timeStamp;
+				});
+
 				deferred.resolve(posts);
 			});
 
