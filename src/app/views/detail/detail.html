@@ -11,8 +11,13 @@
 		<h2>
 			<a title="Go to: {{ Detail.details.website }}" href="{{ Detail.details.website }}">{{ Detail.details.title }}</a>
 		</h2>
-		
-		<my:avatar data-model="Detail.details" data-is-thumb="true"></my:avatar>
+
+		<testimonial ng:if="!!Detail.getTestimonialAuthor()">
+			<quote ng:bind-html="Detail.getTestimonialQuoteHtml()"></quote>
+			<author>{{ Detail.getTestimonialAuthor() }}</author>
+		</testimonial>
+		<!-- 
+		<my:avatar data-model="Detail.details" data-is-thumb="true"></my:avatar> -->
 
 		<h3>{{ Detail.details.summary }}</h3>
 		<p>{{ Detail.details.description }}</p>

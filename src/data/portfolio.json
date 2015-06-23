@@ -8,6 +8,10 @@
 		"tags" : [
 			"JavaScript", "AngularJs", "SASS", "Git", "Grunt", "HTML(5)", "CSS(3)", "Responsive-design", "REST", "Node.js"
 		],
+		"testimonial" : {
+			"html" : "<p>Will gets results. He's an absolutely invaluable team-member to have: no matter what the task is, you know it's in good hands with Will. It's rare to come across a developer who manages to successfully juggle the combination of experience, a willingness to learn, and the pragmatism that means he gets the job done, every time. Always cheerful, funny, and a great character to have around the office, Will is a true asset to any team and I'd work with him again like a shot.</p>",
+			"author" : "Timothy Robin Barnarby Kendrick, Lead Developer"
+		},
 		"avatarUrl" : "/images/favicon.png"
 	},
 	{
@@ -19,6 +23,10 @@
 		"tags" : [
 			"JavaScript", "Backbone.js", "Underscore.js", "Twitter-bootstrap", "LESS", "Git", "Grunt", "HTML(5)", "CSS(3)", "Responsive-design", "REST", "Node.js"
 		],
+		"testimonial" : {
+			"html" : "<p>When I hired Will, it was for his potential rather than his experience at the time. He didn't fail to impress and quickly filled the gaps in his skill set. Overall he was very dependable and easy to work with. I was really sorry to see him go and recommend him any day.</p>",
+			"author" : "Onur Halilcolar, Front End Lead Developer"
+		},
 		"avatarUrl" : "/images/favicon.png"
 	},
 	{
@@ -75,22 +83,6 @@
 		"testimonial" : {
 			"html" : "<p>Will has designed and developed our website <a href=\"http://norwichleap.co.uk/\">http://norwichleap.co.uk/</a>.  He is a creative and talented web designer with great communication skills. Will has continued to offer innovation and suggestions to us following the initial build. He offers a top end result at great value.</p>",
 			"author" : "Barry Allard, Project Manager"
-		}
-	},
-	{
-		"id"      : "evolve",
-		"title"   : "Evolve Associates Ltd",
-		"testimonial" : {
-			"html" : "<p>Will, unusually in my experience, is able to balance a highly creative, artistic and innovative flair for design; with the detail required to ensure that all the behind the scenes work is reliable, easy to navigate and doesn't 'break'. I have hired Will for two widely different business solutions and I am delighted with his work on both websites and the supporting marketing materials which he also designed for us. I would thoroughly recommend him and suggest you grab his talents quickly as he is likely to be very much in demand!</p>",
-			"author" : "Lua Leggett, Founder"
-		}
-	},
-	{
-		"id"      : "evaluate",
-		"title"   : "Evaluate Technologies Ltd",
-		"testimonial" : {
-			"html" : "<p>Will is an excellent Developer who never shirks from any given task. He is more than happy to go 'the extra mile' ensuring Clients requests are fulfilled prior to any deadline and was particularly helpful in getting the Confused.com's site built and live.</p>",
-			"author" : "Jim Barrowman, Director"
 		}
 	}
 ]

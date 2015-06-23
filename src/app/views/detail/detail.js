@@ -39,11 +39,32 @@ module.exports = angular.module('myApp.views.detail', [
 	};
 })
 .controller('MyViewDetailCtrl', function (
+	$sce,
 	$scope,
 	$routeParams,
 	MyProjectService
 ) {
 	var Detail = this;
+
+	Detail.getTestimonialQuoteHtml = function () {
+		var testimonial = Detail.details && Detail.details.testimonial;
+
+		if (!testimonial) {
+			return null;
+		}
+
+		return $sce.trustAsHtml(testimonial.html);
+	};
+
+	Detail.getTestimonialAuthor = function () {
+		var testimonial = Detail.details && Detail.details.testimonial;
+
+		if (!testimonial) {
+			return null;
+		}
+
+		return testimonial.author;
+	};
 
 	Detail.getDetails = function (id) {
 		return MyProjectService.get(id)
@@ -53,17 +74,6 @@ module.exports = angular.module('myApp.views.detail', [
 			})
 			.catch(function (err) {
 				console.warn('getDetails error', id, err);
-			});
-	};
-
-	Detail.updateDetails = function (id, details) {
-		return MyProjectService.update(id, details)
-			.then(function (details) {
-				Detail.details = details;
-				// console.log('updated', $scope.details);
-			})
-			.catch(function (err) {
-				console.warn('updateDetails error', id, err);
 			});
 	};
 
