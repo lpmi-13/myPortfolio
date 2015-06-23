@@ -13,22 +13,27 @@ module.exports = angular.module('myApp.components.socialNetworks', [
 	return {
 		restrict: 'E',
 		template: template,
-		controller: 'MySocialNetworksCtrl',
+		controller: 'MySocialNetworksCtrl as SocialNetworks',
 		replace: true,
 		scope: {
+			isInline: '=?'
 		},
 		link: function (scope, elem, attrs, controller) {
-
-			controller.getSocialNetworks().then(function (socialNetworks) {
-				scope.socialNetworks = socialNetworks;
-			});
 		}
 	};
 })
 .controller('MySocialNetworksCtrl', function (
 	SocialNetworksService
 ) {
-	this.getSocialNetworks = function () {
+	var SocialNetworks = this;
+
+	SocialNetworks.socialNetworks = null;
+
+	SocialNetworks.getSocialNetworks = function () {
 		return SocialNetworksService.getSocialNetworks();
 	};
+
+	SocialNetworks.getSocialNetworks().then(function (socialNetworks) {
+		SocialNetworks.socialNetworks = socialNetworks;
+	});
 });

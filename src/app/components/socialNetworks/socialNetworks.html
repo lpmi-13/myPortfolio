@@ -1,8 +1,12 @@
 <div class="my-social-networks">
-	<ul>
-		<li ng:repeat="network in socialNetworks"
+	<ul ng:if="!isInline">
+		<li ng:repeat="network in SocialNetworks.socialNetworks"
 			class="-{{ network.id }}">
 			<a href="{{ network.url }}" title="{{ network.name }}"><span>{{ network.name }}</span></a>
 		</li>
+	</ul>
+	<p ng:if="!!isInline">
+		Please <a href="mailto:hello@willthirkettle.co.uk">email me</a> or contact me on
+		<span ng:repeat="network in SocialNetworks.socialNetworks">{{ $last ? ' or ' : ($first ? '' : ', ') }}<a href="{{ network.url }}" title="{{ network.name }}">{{ network.name }}</a></span>
 	</ul>
 </div>

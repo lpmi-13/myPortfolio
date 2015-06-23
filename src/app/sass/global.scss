@@ -32,6 +32,11 @@ hr {
 .page-view {
 	font-size: 20px;
 
+	header {
+		position: relative;
+		z-index: 1;
+	}
+
 	// main page content
 	> article {
 		padding: $gutterSize;
@@ -74,6 +79,8 @@ hr {
 		small {
 			font-size: 60%;
 		}
+
+		box-shadow: 0 1px 4px rgba(black, 0.1);
 	}
 }
 
@@ -88,5 +95,6 @@ hr {
 @import "../components/avatar/_avatar.scss";
 @import "../components/projectSummary/_projectSummary.scss";
 @import "../components/header/_header.scss";
+@import "../components/footer/_footer.scss";
 @import "../components/navigation/_navigation.scss";
 @import "../components/tumblrBlogPost/_tumblrBlogPost.scss";

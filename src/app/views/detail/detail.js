@@ -6,6 +6,7 @@ var template = require('./detail.html');
 var projectService = require('../../services/projectService');
 // sub components
 var headerComponent = require('../../components/header/header');
+var footerComponent = require('../../components/footer/footer');
 var avatarComponent = require('../../components/avatar/avatar');
 
 
@@ -19,6 +20,7 @@ var avatarComponent = require('../../components/avatar/avatar');
 module.exports = angular.module('myApp.views.detail', [
 	projectService.name,
 	headerComponent.name,
+	footerComponent.name,
 	avatarComponent.name
 ])
 .directive('myViewDetail', function (

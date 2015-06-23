@@ -1,0 +1,26 @@
+
+.my-footer {
+	line-height: 1.1;
+	font-size: 13px;
+	padding: $gutterSize;
+
+	@media only screen and (min-width: $breakPoint) {
+		padding: $gutterSize $gutterSizeMid;
+		font-size: 15px;
+	}
+
+	@media only screen and (min-width: $breakPointWide) {
+		width: 80%;
+		max-width: 1280px;
+		margin: 0 auto;
+		padding: $gutterSizeMid $gutterSizeWide;
+	}
+
+
+	p {
+		margin-bottom: 5px;
+	}
+
+	.my-social-networks {
+	}
+}
