@@ -5,6 +5,7 @@
                             
 Will Thirkettle - Web design and development
 *  Site: http://willthirkettle.co.uk
+*  Git: https://github.com/SirKettle/myPortfolio.git
 *  Twitter: @thirkettle
 *  Location: London, UK.
 
