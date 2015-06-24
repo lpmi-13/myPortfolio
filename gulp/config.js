@@ -20,6 +20,11 @@ module.exports = {
     'dest': 'build/server'
   },
 
+  'txt': {
+    'src' : 'src/**/*.txt',
+    'dest': 'build'
+  },
+
   'images': {
     'src' : 'src/images/**/*',
     'dest': 'build/images'

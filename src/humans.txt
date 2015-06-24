@@ -1,0 +1,27 @@
+
+
+/* TEAM */
+
+                            
+Will Thirkettle - Web design and development
+*  Site: http://willthirkettle.co.uk
+*  Twitter: @thirkettle
+*  Location: London, UK.
+
+
+--------------------------------------------------------------------
+
+
+/* SITE */
+
+Live version 3.0
+
+Language: English
+
+Last update: 2015/06/24
+
+Tech: JavaScript, AngularJS, HTML5, CSS(3), Sass, Browserify, Gulp...
+
+APIs: Twitter, Tumblr
+
+Software: Sublime Text 3, Tower/SourceTree, Google Chrome Dev Tools
