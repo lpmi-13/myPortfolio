@@ -7,6 +7,10 @@
 
 		@extend %clearfix;
 
+		img {
+			margin-bottom: 10px;
+		}
+
 		> section {
 
 			@media only screen and (min-width: $breakPoint) {
@@ -24,6 +28,20 @@
 
 				&:first-child {
 					padding-right: $gutterSizeWide;
+				}
+			}
+
+			.my-blog {
+		
+				margin-bottom: $gutterSize;
+				
+				li {
+
+					&:last-child {
+						hr {
+							display: none;
+						}
+					}
 				}
 			}
 		}

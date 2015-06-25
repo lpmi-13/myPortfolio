@@ -1,6 +1,8 @@
 
 .my-navigation {
 	font-size: $headerNavFontSize;
+	font-family: $condensedFont;
+	font-weight: $condensedFontWeight;
 
 	ul {
 		margin-top: -$gutterSize;
@@ -13,10 +15,10 @@
 				cursor: pointer;
 				display: block;
 				padding: 10px 0;
-				color: rgba(white, 0.7);
+				color: rgba(white, 0.8);
 
 				&:hover {
-					color: rgba(white, 0.85);
+					color: white;
 					background: $headerNavItemColor;
 				}
 			}

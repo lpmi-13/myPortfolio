@@ -1,7 +1,7 @@
 
 body {
 	font-family: $mainFont;
-	font-weight: 300;
+	font-weight: $mainFontWeight;
 	color: $mainColor;
 	background: $mainBackgroundColor;
 	overflow-y: scroll;
@@ -43,7 +43,7 @@ hr {
 		background: $pageBackgroundColor;
 		line-height: 1.4;
 		text-align: justify;
-		font-size: 20px;
+		font-size: 17px;
 
 		@media only screen and (min-width: $breakPoint) {
 			// width: 80%;
@@ -61,23 +61,27 @@ hr {
 			font-size: 30px;
 			font-family: $headingFont;
 			font-weight: $headingWeight;
-			margin-bottom: 10px;
+			margin-bottom: $gutterSize;
 		}
 
 		h3 {
 			font-size: 18px;
-			line-height: 1.5;
 			font-family: $subHeadingFont;
 			font-weight: $subHeadingWeight;
-			margin-bottom: 10px;
+			margin-bottom: $gutterSize;
+		}
+
+		h4 {
+			font-weight: $mainFontWeightMid;
 		}
 
 		p {
-			margin-bottom: 10px;
+			margin-bottom: $gutterSize;
 		}
 
 		small {
-			font-size: 60%;
+			font-size: 70%;
+			font-weight: $smallFontWeight;
 		}
 
 		box-shadow: 0 1px 4px rgba(black, 0.1);

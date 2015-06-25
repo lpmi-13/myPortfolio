@@ -2,6 +2,7 @@
 .my-footer {
 	line-height: 1.1;
 	font-size: 13px;
+	font-weight: $smallFontWeight;
 	padding: $gutterSize;
 
 	@media only screen and (min-width: $breakPoint) {
