@@ -30,6 +30,4 @@ module.exports = angular.module('myApp.components.tumblrBlogPost', [
 	var Post = this;
 
 	Post.model = $scope.model;
-
-	console.log(Post.model);
 });

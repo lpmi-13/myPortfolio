@@ -48,6 +48,4 @@ module.exports = angular.module('myApp.components.tweet', [
 	var Post = this;
 
 	Post.model = $scope.model;
-
-	console.log(Post.model);
 });
