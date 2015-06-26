@@ -23,21 +23,35 @@ angular.module('myApp', [
 	viewDetail.name,
 	'ngRoute'
 ])
-.config([
-	'$routeProvider', function (
-		$routeProvider
-	) {
-		$routeProvider
-			.when('/', { template: '<my:view-main></my:view-main>' })
-			.when('/about', { template: '<my:view-about></my:view-about>' })
-			.when('/project/:key', {
-				template: function (params) {
-					return '<my:view-detail data-key="' + params.key + '"></my:view-detail>';
-				}
-			})
-			.otherwise({ redirectTo: '/' });
-	}
-])
+.config(function (
+	$routeProvider, $provide
+) {
+	// handle pages / routing
+	$routeProvider
+		.when('/', { template: '<my:view-main></my:view-main>' })
+		.when('/about', { template: '<my:view-about></my:view-about>' })
+		.when('/project/:key', {
+			template: function (params) {
+				return '<my:view-detail data-key="' + params.key + '"></my:view-detail>';
+			}
+		})
+		.otherwise({ redirectTo: '/' });
+
+	// decorate the $q service with 'allSettled' which unlike 'all' resolves if a promise fails
+	$provide.decorator('$q', function($delegate) {
+		var $q = $delegate;
+		$q.allSettled = function(promises) {
+			return $q.all(promises.map(function(promise) {
+				return promise.then(function(value) {
+					return { state: 'fulfilled', value: value };
+				}, function(reason) {
+					return { state: 'rejected', reason: reason };
+				});
+			}));
+		};
+		return $q;
+	});
+})
 .run(function (
 	$filter,
 	LocalisationService,
