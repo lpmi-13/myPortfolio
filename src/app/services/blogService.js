@@ -93,8 +93,6 @@ module.exports = angular.module('myApp.services.blogService', [
 			$.getJSON('/server/getTweets.php', function (tweets) {
 				var posts = [];
 
-				console.log(tweets);
-
 				tweets.forEach(function (tweet) {
 					posts.push(resampleTweet(tweet));
 				});
@@ -122,7 +120,6 @@ module.exports = angular.module('myApp.services.blogService', [
 			}, function (aData) {
 
 				var posts = [];
-				console.log(aData);
 
 				if (!Boolean(aData.response && aData.response.posts.length > 0)) {
 					deferred.resolve(posts);
@@ -167,8 +164,6 @@ module.exports = angular.module('myApp.services.blogService', [
 
 			$q.all([tweetsPromise, tumblrPromise]).finally(function () {
 				// sort the posts
-
-
 				posts = posts.sort(function (a, b) {
 					return b.__timeStamp - a.__timeStamp;
 				});
