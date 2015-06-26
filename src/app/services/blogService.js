@@ -1,14 +1,13 @@
 'use strict';
 
 var angular = require('angular');
-var $ = require('jquery');
-// var dataHandler = require('../../services/mockDataHandler');
 
 module.exports = angular.module('myApp.services.blogService', [
-	// dataHandler.name
-])
-.service('BlogService', function (
-	$q
+
+]).service('BlogService', function (
+	$q,
+	$http,
+	$timeout
 ) {
 
 	var mCache = {};
@@ -21,32 +20,6 @@ module.exports = angular.module('myApp.services.blogService', [
 	};
 
 	function resampleTweet (tweet) {
-
-
-		// var createdDate = new Date(oTweet.created_at * 1000),
-		// $post = $('<div>').addClass('blogpost')
-		// .html('<hr><small>Tweeted on ' + getDateHtml(createdDate) + '</span>'),
-		// tweetHtml = oTweet.text;
-
-		// // replace urls
-		// _.each(oTweet.entities.urls, function (oUrl) {
-		// tweetHtml = tweetHtml.replace(new RegExp(oUrl.url), '<a href="' + oUrl.url +'">' + oUrl.url +'</a>');
-		// });
-
-		// // replace tags
-		// _.each(oTweet.entities.hashtags, function (oTag) {
-		// tweetHtml = tweetHtml.replace(new RegExp('#' + oTag.text), '<a href="https://twitter.com/search?q=%23' + oTag.text +'&src=hash">#' + oTag.text + '</a>');
-		// });
-
-		// // replace usersTags
-		// _.each(oTweet.entities.user_mentions, function (oTag) {
-		// tweetHtml = tweetHtml.replace(new RegExp('@' + oTag.screen_name), '<a title="' + oTag.name + '" href="https://twitter.com/' + oTag.screen_name + '">@' + oTag.screen_name + '</a>');
-		// });
-
-		// $post.append($('<p>').html(tweetHtml));
-
-
-		// need to add some common attributes for sorting
 		tweet.__postType = 'TWEET';
 		tweet.__timeStamp = tweet.created_at * 1000;
 
@@ -54,29 +27,6 @@ module.exports = angular.module('myApp.services.blogService', [
 	}
 
 	function resampleTumblrPost (tumblrPost) {
-		// var splitDate = tumblrPost.date.split(" "),
-		// dateParts = splitDate[0].split("-"),
-		// timeParts = splitDate[1].split(":");
-		// createdDate = new Date(dateParts[0],(dateParts[1]-1),dateParts[2],timeParts[0],timeParts[1],timeParts[2]),
-		// $post = $('<div>').addClass('blogpost')
-		// .html('<hr><small>Posted on ' + getDateHtml(createdDate) + '</span>');
-
-		// tumblrPost.
-
-		// switch (tumblrPost.type) {
-		// case 'text':
-		// $post.append($('<h3>').text(tumblrPost.title), tumblrPost.body);
-		// break;
-		// case 'photo':
-		// $post.append('<img class="image" src="' + tumblrPost.photos[0].alt_sizes[0].url + '">', tumblrPost.caption);
-		// break;
-		// case 'link':
-		// break;
-		// case 'video':
-		// break;
-		// };
-
-		// need to add some common attributes for sorting
 		tumblrPost.__postType = 'TUMBLR';
 		tumblrPost.__timeStamp = tumblrPost.timestamp * 1000;
 
@@ -90,17 +40,29 @@ module.exports = angular.module('myApp.services.blogService', [
 			deferred.resolve(mCache.tweets);
 		}
 		else {
-			$.getJSON('/server/getTweets.php', function (tweets) {
-				var posts = [];
+			$http.get('/server/getTweets.php')
+				.success(function(aData, status, headers, config) {
+					var posts = [];
 
-				tweets.forEach(function (tweet) {
-					posts.push(resampleTweet(tweet));
+					if (!angular.isArray(aData)) {
+						window.console.warn('error getting tweets - prob running node server');
+						deferred.reject();
+						return;
+					}
+
+					aData.forEach(function (tweet) {
+						posts.push(resampleTweet(tweet));
+					});
+
+					mCache.tweets = posts;
+
+					deferred.resolve(posts);
+				})
+				.error(function(data, status, headers, config) {
+					// log error
+					window.console.warn('error getting tweets');
+					deferred.reject();
 				});
-
-				mCache.tweets = posts;
-
-				deferred.resolve(posts);
-			});
 		}
 
 		return deferred.promise;
@@ -114,35 +76,44 @@ module.exports = angular.module('myApp.services.blogService', [
 		}
 		else {
 
-			$.getJSON('http://api.tumblr.com/v2/blog/' + m_Accounts.tumblr.name + '.tumblr.com/posts?callback=?', {
-				api_key: m_Accounts.tumblr.key,
-				limit : m_Accounts.tumblr.limit
-			}, function (aData) {
+			var tumblrGetUrl = 'http://api.tumblr.com/v2/blog/' + m_Accounts.tumblr.name +
+								'.tumblr.com/posts?callback=JSON_CALLBACK' +
+								'&limit=' + m_Accounts.tumblr.limit +
+								'&api_key=' + m_Accounts.tumblr.key;
 
-				var posts = [];
+			$http.jsonp(tumblrGetUrl)
+				.success(function(aData, status, headers, config) {
+					var posts = [];
 
-				if (!Boolean(aData.response && aData.response.posts.length > 0)) {
+					if (!Boolean(aData.response && aData.response.posts.length > 0)) {
+						deferred.resolve(posts);
+						return;
+					}
+
+					// filter post types
+					aData.response.posts = aData.response.posts.filter(function (post) {
+						if (post.type === 'text') {
+							return true;
+						}
+						if (post.type === 'photo') {
+							return true;
+						}
+						return false;
+					});
+
+					aData.response.posts.forEach(function (tumblrPost, index) {
+						if (index < m_Accounts.tumblr.limit) {
+							posts.push(resampleTumblrPost(tumblrPost));
+						}
+					});
+
 					deferred.resolve(posts);
-					return;
-				}
-
-				// filter post types
-				aData.response.posts = aData.response.posts.filter(function (post) {
-					if (post.type === 'text') {
-						return true;
-					}
-					if (post.type === 'photo') {
-						return true;
-					}
-					return false;
+				})
+				.error(function(data, status, headers, config) {
+					// log error
+					window.console.warn('error getting tumblr posts');
+					deferred.reject();
 				});
-
-				aData.response.posts.forEach(function (tumblrPost) {
-					posts.push(resampleTumblrPost(tumblrPost));
-				});
-
-				deferred.resolve(posts);
-			});
 		}
 
 		return deferred.promise;
@@ -162,7 +133,7 @@ module.exports = angular.module('myApp.services.blogService', [
 				posts = posts.concat(tumblrPosts);
 			});
 
-			$q.all([tweetsPromise, tumblrPromise]).finally(function () {
+			$q.allSettled([tweetsPromise, tumblrPromise]).finally(function () {
 				// sort the posts
 				posts = posts.sort(function (a, b) {
 					return b.__timeStamp - a.__timeStamp;
@@ -170,7 +141,6 @@ module.exports = angular.module('myApp.services.blogService', [
 
 				deferred.resolve(posts);
 			});
-
 
 			return deferred.promise;
 		}
