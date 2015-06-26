@@ -125,6 +125,9 @@ module.exports = angular.module('services.mockDataHandler', [
 			mVersion = 't0.1',
 
 			_getLatency = function () {
+
+				return 1; // we're live now - lets make this instant // TODO - create liveDataHandler and use actual db
+
 				var from = 20, to = 300;
 				return Math.random() * (to - from) + from;
 			},
