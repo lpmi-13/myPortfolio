@@ -1,6 +1,13 @@
 <div class="my-tumblr-blog-post">
 	<p><small>Posted on {{ Post.model.__timeStamp | date: 'dd MMM yyyy' }}</small></p>
-	<image ng:src="{{ Post.model.photos[0].alt_sizes[0].url }}" width="100%">
+
+	<my:loading-image
+		data-url="Post.imageModel.url"
+		data-width="Post.imageModel.width"
+		data-height="Post.imageModel.height"
+	>
+	</my:loading-image>
+	
 	<h4 ng:bind-html="_getCaption()"></h4>
 	<hr>
 </div>

@@ -1,0 +1,8 @@
+<div class="my-loading-image" style="{{ !!_tempImageHeight ? ('height: ' + _tempImageHeight) : '' }}">
+	<img ng:src="{{ _imageSrc }}"
+		ng:class="{
+			'loaded': !!_imageSrc
+		}"
+		width="100%"
+		height="100%">
+</div>

@@ -2,11 +2,14 @@
 
 var angular = require('angular');
 var template = require('./tumblrBlogPost.html');
+var loadingImageComponent = require('../../components/loadingImage/loadingImage');
 
 module.exports = angular.module('myApp.components.tumblrBlogPost', [
+	loadingImageComponent.name
 ])
 .directive('myTumblrBlogPost', function (
-	$sce
+	$sce,
+	$timeout
 ) {
 	return {
 		restrict: 'E',
@@ -30,4 +33,5 @@ module.exports = angular.module('myApp.components.tumblrBlogPost', [
 	var Post = this;
 
 	Post.model = $scope.model;
+	Post.imageModel = Post.model.photos[0].alt_sizes[0];
 });
