@@ -10,6 +10,7 @@ var analyticsService = require('./services/analyticsService');
 
 var viewMain = require('./views/main/main');
 var viewAbout = require('./views/about/about');
+var viewTax = require('./views/tax/tax');
 var viewDetail = require('./views/detail/detail');
 
 angularRoute;
@@ -20,6 +21,7 @@ angular.module('myApp', [
 	analyticsService.name,
 	viewMain.name,
 	viewAbout.name,
+	viewTax.name,
 	viewDetail.name,
 	'ngRoute'
 ])
@@ -30,6 +32,7 @@ angular.module('myApp', [
 	$routeProvider
 		.when('/', { template: '<my:view-main></my:view-main>' })
 		.when('/about', { template: '<my:view-about></my:view-about>' })
+		.when('/tax', { template: '<my:view-tax></my:view-tax>' })
 		.when('/project/:key', {
 			template: function (params) {
 				return '<my:view-detail data-key="' + params.key + '"></my:view-detail>';
