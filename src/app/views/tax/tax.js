@@ -45,7 +45,7 @@ module.exports = angular.module('myApp.views.tax', [
 	Tax.numWeeksOperating = 46;
 	Tax.expensesPounds = 4500;
 
-	$scope.$watchCollection('[Tax.companyDayRatePounds, Tax.numWeeksOperating, Tax.expensesPounds, Tax.people[0].share, Tax.people[0].salary, Tax.people[1].share, Tax.people[1].salary]', _calculate);
+	$scope.$watchCollection('[Tax.companyDayRatePounds, Tax.numWeeksOperating, Tax.expensesPounds, Tax.people[0].share, Tax.people[0].hasSalary, Tax.people[1].share, Tax.people[1].hasSalary]', _calculate);
 
 	Tax.calculations = [
 		{
@@ -53,28 +53,36 @@ module.exports = angular.module('myApp.views.tax', [
 			corpTaxRate: 0.2,
 			divAllowance: 0,
 			basicDivTaxRate: 0,
-			higherDivTaxRate: 0.25
+			higherDivTaxRate: 0.25,
+			optimumSalary: 8060,
+			notes: '(2015) Current tax rates with optimum salary of £8,060'
 		},
 		{
 			description: '2016 (Apr)',
 			corpTaxRate: 0.2,
 			divAllowance: 5000,
 			basicDivTaxRate: 0.075,
-			higherDivTaxRate: 0.325
+			higherDivTaxRate: 0.325,
+			optimumSalary: 11000,
+			notes: 'Tax rates as declared in Tory budget with salary of £11,000.  No NIC allowance (??)'
 		},
 		{
 			description: '2017',
 			corpTaxRate: 0.19,
 			divAllowance: 5000,
 			basicDivTaxRate: 0.075,
-			higherDivTaxRate: 0.325
+			higherDivTaxRate: 0.325,
+			optimumSalary: 11000,
+			notes: 'Tax rates as declared in Tory budget with salary of £11,000.  Corp Tax lowered to 19%'
 		},
 		{
 			description: '2020',
 			corpTaxRate: 0.18,
 			divAllowance: 5000,
 			basicDivTaxRate: 0.075,
-			higherDivTaxRate: 0.325
+			higherDivTaxRate: 0.325,
+			optimumSalary: 11000,
+			notes: 'Tax rates as declared in Tory budget with salary of £11,000.  Corp Tax lowered to 18%'
 		}
 	];
 
@@ -83,11 +91,12 @@ module.exports = angular.module('myApp.views.tax', [
 		{
 			name: 'Will',
 			share: 0.7,
-			salary: (670 * 12)
+			hasSalary: true
 		},
 		{
 			name: 'Vicky',
-			share: 0.3
+			share: 0.3,
+			hasSalary: false
 		}
 	];
 
@@ -96,9 +105,9 @@ module.exports = angular.module('myApp.views.tax', [
 		Tax.calculations.forEach(function (calc) {
 			calc.totals = TaxCalculatorService.calculate(
 				Tax.companyDayRatePounds, Tax.numWeeksOperating, Tax.expensesPounds, Tax.people,
-				calc.corpTaxRate, calc.basicDivTaxRate, calc.higherDivTaxRate, calc.divAllowance);
-
-			window.console.log(calc);
+				calc.optimumSalary, calc.corpTaxRate, calc.basicDivTaxRate, calc.higherDivTaxRate, calc.divAllowance);
 		});
+
+		window.console.log(Tax.calculations);
 	}
 });

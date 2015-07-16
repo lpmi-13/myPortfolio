@@ -33,9 +33,9 @@
 					ng:model="Tax.people[0].share">
 			</label>
 			<label>
-				<input-title>Salary</input-title>
-				<input type="number"
-					ng:model="Tax.people[0].salary">
+				<input-title>Takes company salary</input-title>
+				<input type="checkbox"
+					ng:model="Tax.people[0].hasSalary">
 			</label>
 			<hr>
 			<h2>Shareholder 2</h2>
@@ -50,9 +50,9 @@
 					ng:model="Tax.people[1].share">
 			</label>
 			<label>
-				<input-title>Salary</input-title>
-				<input type="number"
-					ng:model="Tax.people[1].salary">
+				<input-title>Takes company salary</input-title>
+				<input type="checkbox"
+					ng:model="Tax.people[1].hasSalary">
 			</label>
 			<hr>
 		</fieldset>
@@ -64,7 +64,9 @@
 				<li ng:repeat="calc in Tax.calculations">
 					<h3>{{ calc.description }}</h3>
 					<p>Combined total net income: <strong>{{ calc.totals.peopleCombined.annualNetIncome | currency : '£' : 2 }}</strong></p>
+					<p>Combined total monthly income: <strong>{{ calc.totals.peopleCombined.monthlyNetIncome | currency : '£' : 2 }}</strong></p>
 					<p>Take home percentage: <strong>{{ calc.totals.peopleCombined.takeHomePercentage * 100 | number : 2 }}%</strong></p>
+					<small>{{ calc.notes }}</small>
 					<hr>
 				</li>
 			</ul>

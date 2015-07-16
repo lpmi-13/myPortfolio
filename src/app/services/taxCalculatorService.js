@@ -53,6 +53,7 @@ module.exports = angular.module('myApp.services.companyTaxService', [
 	DIVIDEND_TAX_RATE,
 	DIVIDEND_TAX_HIGHER_RATE
 ) {
+	var isFirstCalculation = true;
 
 	function _addDividedTotals (totals, srcKey, destKey, dividedBy) {
 		var field;
@@ -72,6 +73,14 @@ module.exports = angular.module('myApp.services.companyTaxService', [
 			var totals = {
 				annual: {}
 			};
+
+			if (isFirstCalculation) {
+				window.console.warn('Needs to be checked with accountant');
+				window.console.log('Things to consider:');
+				window.console.log(' 1) National Insurance contributions allowance.');
+				window.console.log(' 2) Personal allowance and optimum salary');
+				isFirstCalculation = false;
+			}
 
 			totals.annual.dividends = annualDividendsPounds;
 			totals.annual.salary = annualSalaryPounds;
@@ -107,19 +116,18 @@ module.exports = angular.module('myApp.services.companyTaxService', [
 ) {
 
 	return {
-		calculate: function (companyDayRatePounds, numWeeksOperating, expensesPounds, people, altCorporationTaxRate, altBasicDivTaxRate, altHigherDivTaxRate, altDivAllowance) {
+		calculate: function (companyDayRatePounds, numWeeksOperating, expensesPounds, people, optimumSalary, altCorporationTaxRate, altBasicDivTaxRate, altHigherDivTaxRate, altDivAllowance) {
 
 			var totalCompanySalary = 0;
 			var maxCompanyDividends;
 			var netInvoiceTotalPounds = companyDayRatePounds * 5 * numWeeksOperating;
 
 			var totals = {
-				company: {},
 				people: people.slice()
 			};
 
 			totals.people.forEach(function (person) {
-				totalCompanySalary += person.salary || 0;
+				totalCompanySalary += person.hasSalary ? optimumSalary : 0;
 			});
 
 			totals.company = CompanyTaxService.calculate(netInvoiceTotalPounds, expensesPounds, totalCompanySalary, altCorporationTaxRate);
@@ -128,7 +136,7 @@ module.exports = angular.module('myApp.services.companyTaxService', [
 
 			totals.people.forEach(function (person) {
 				var annualDividendsPounds = maxCompanyDividends * person.share;
-				person.tax = PersonalTaxService.calculate(annualDividendsPounds, person.salary || 0, altBasicDivTaxRate, altHigherDivTaxRate, altDivAllowance);
+				person.tax = PersonalTaxService.calculate(annualDividendsPounds, person.hasSalary ? optimumSalary : 0, altBasicDivTaxRate, altHigherDivTaxRate, altDivAllowance);
 			});
 
 			var totalAnnualNetIncome = 0;
@@ -146,7 +154,7 @@ module.exports = angular.module('myApp.services.companyTaxService', [
 			totals.peopleCombined.weeklyNetIncome = totals.peopleCombined.annualNetIncome / 52;
 			totals.peopleCombined.dailyNetIncome = totals.peopleCombined.weeklyNetIncome / 5;
 
-			return totals;
+			return angular.copy(totals);
 		}
 	};
 });
