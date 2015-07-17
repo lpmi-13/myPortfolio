@@ -41,7 +41,7 @@ module.exports = angular.module('myApp.views.tax', [
 ) {
 	var Tax = this;
 
-	Tax.companyDayRatePounds = 1;
+	Tax.companyDayRatePounds = 100;
 	Tax.numWeeksOperating = 46;
 	Tax.expensesPounds = 1000;
 
