@@ -4,33 +4,6 @@
 
 
 	> article {
-
-		@extend %clearfix;
-
-		> fieldset {
-
-			text-align: left;
-
-			label {
-				display: block;
-				margin-bottom: $gutterSize;
-
-				input {
-					border: solid 1px #ccc;
-					padding: 5px 20px;
-					min-width: 50px;
-
-					&:focus {
-						outline: none;
-						border-color: $highlightColor;
-					}
-				}
-			}
-		}
-
-		> section {
-
-		}
 	}
 
 }

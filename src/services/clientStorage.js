@@ -42,7 +42,6 @@ module.exports = angular.module('services.clientStorage', [
 			if (angular.isString(key) && angular.isDefined(newData)) {
 				serialisedValue = JSON.stringify({ data: newData });
 				window.localStorage.setItem(key, serialisedValue);
-				console.log('ClientStorage set:', key, newData);
 			}
 
 		};
