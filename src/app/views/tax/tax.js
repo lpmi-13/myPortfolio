@@ -41,9 +41,9 @@ module.exports = angular.module('myApp.views.tax', [
 ) {
 	var Tax = this;
 
-	Tax.companyDayRatePounds = 400;
+	Tax.companyDayRatePounds = 1;
 	Tax.numWeeksOperating = 46;
-	Tax.expensesPounds = 4500;
+	Tax.expensesPounds = 1000;
 
 	$scope.$watchCollection('[Tax.companyDayRatePounds, Tax.numWeeksOperating, Tax.expensesPounds, Tax.people[0].share, Tax.people[0].hasSalary, Tax.people[1].share, Tax.people[1].hasSalary]', _calculate);
 
