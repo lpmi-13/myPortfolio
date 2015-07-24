@@ -13,8 +13,6 @@ var viewAbout = require('./views/about/about');
 var viewTax = require('./views/tax/tax');
 var viewDetail = require('./views/detail/detail');
 
-angularRoute;
-
 angular.module('myApp', [
 	filters.name,
 	localisationService.name,
