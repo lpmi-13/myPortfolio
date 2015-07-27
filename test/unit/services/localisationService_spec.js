@@ -27,10 +27,6 @@ describe('Unit: LocalisationService', function() {
 		expect(service).toBeDefined();
 	});
 
-	it('Service is undefined (Deliberately fail test)', function () {
-		expect(undefined).toBeDefined();
-	});
-
 
 	it('init() method is type of function', function () {
 		expect(typeof service.init).toBe('function');
