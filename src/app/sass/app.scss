@@ -4,3 +4,21 @@
 @import "variables.scss";
 @import "mixins.scss";
 @import "global.scss";
+
+// skins
+@import "./skins/form.scss";
+
+// views
+@import "../views/main/_main.scss";
+@import "../views/detail/_detail.scss";
+@import "../views/about/_about.scss";
+@import "../views/tax/_tax.scss";
+@import "../components/avatar/_avatar.scss";
+@import "../components/projectSummary/_projectSummary.scss";
+@import "../components/header/_header.scss";
+@import "../components/footer/_footer.scss";
+@import "../components/navigation/_navigation.scss";
+@import "../components/blog/_blog.scss";
+@import "../components/blogPost/_blogPost.scss";
+@import "../components/loadingImage/_loadingImage.scss";
+@import "../components/taxCalculator/_taxCalculator.scss";
