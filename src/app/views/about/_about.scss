@@ -30,20 +30,6 @@
 					padding-right: $gutterSizeWide;
 				}
 			}
-
-			.my-blog {
-		
-				margin-bottom: $gutterSize;
-				
-				li {
-
-					&:last-child {
-						hr {
-							display: none;
-						}
-					}
-				}
-			}
 		}
 	}
 

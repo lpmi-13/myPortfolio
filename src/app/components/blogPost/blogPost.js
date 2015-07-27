@@ -1,20 +1,20 @@
 'use strict';
 
 var angular = require('angular');
-var template = require('./tumblrBlogPost.html');
+var template = require('./blogPost.html');
 var loadingImageComponent = require('../../components/loadingImage/loadingImage');
 
-module.exports = angular.module('myApp.components.tumblrBlogPost', [
+module.exports = angular.module('myApp.components.blogPost', [
 	loadingImageComponent.name
 ])
-.directive('myTumblrBlogPost', function (
+.directive('myBlogPost', function (
 	$sce,
 	$timeout
 ) {
 	return {
 		restrict: 'E',
 		template: template,
-		controller: 'MyTumblrBlogPostCtrl as Post',
+		controller: 'MyBlogPostCtrl as Post',
 		replace: true,
 		scope: {
 			model: '=?'
@@ -22,16 +22,18 @@ module.exports = angular.module('myApp.components.tumblrBlogPost', [
 		link: function (scope, elem, attrs, controller) {
 
 			scope._getCaption = function () {
-				return $sce.trustAsHtml(scope.model.caption);
+				return $sce.trustAsHtml(scope.model.__html.caption);
+			};
+
+			scope._getPostInfo = function () {
+				return $sce.trustAsHtml(scope.model.__html.postInfo);
 			};
 		}
 	};
 })
-.controller('MyTumblrBlogPostCtrl', function (
+.controller('MyBlogPostCtrl', function (
 	$scope
 ) {
 	var Post = this;
-
 	Post.model = $scope.model;
-	Post.imageModel = Post.model.photos[0].alt_sizes[0];
 });

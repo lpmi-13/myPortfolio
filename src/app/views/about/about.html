@@ -21,20 +21,7 @@
 			<h2>My social feed</h2>
 			<h3>A mixture of blog posts and tweets.</h3>
 			<hr>
-			<ul class="my-blog">
-				<li ng:repeat="post in blogPosts"
-				>
-					<my:tweet
-						ng:if="post.__postType === 'TWEET'"
-						data-model="post"
-					></my:tweet>
-
-					<my:tumblr-blog-post
-						ng:if="post.__postType === 'TUMBLR'"
-						data-model="post"
-					></my:tumblr-blog-post>
-				</li>
-			</ul>
+			<my:blog></my:blog>
 		</section>
 	</article>
 	<my:footer></my:footer>

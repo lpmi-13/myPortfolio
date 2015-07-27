@@ -1,0 +1,14 @@
+<div class="my-blog-post">
+	<p><small ng:bind-html="_getPostInfo()"></small></p>
+
+	<my:loading-image
+		ng:if="!!Post.model.__imageModel"
+		data-url="Post.model.__imageModel.url"
+		data-width="Post.model.__imageModel.width"
+		data-height="Post.model.__imageModel.height"
+	>
+	</my:loading-image>
+	
+	<h4 ng:bind-html="_getCaption()"></h4>
+	<hr>
+</div>
