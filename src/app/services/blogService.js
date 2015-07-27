@@ -40,7 +40,7 @@ module.exports = angular.module('myApp.services.blogService', [
 			deferred.resolve(mCache.tweets);
 		}
 		else {
-			$http.get('/server/getTweets.php')
+			$http.get('http://server.willthirkettle.co.uk/api/tweets.php')
 				.success(function(aData, status, headers, config) {
 					var posts = [];
 
