@@ -6,7 +6,7 @@
 		ng:show="!!eventModel.summary"
 	>
 		<h3 ng:bind-html="_getEventSummary(eventModel)"></h3>
-		<ul ng:show="!!(eventModel.commits && eventModel.commits.length)">
+		<ul class="-list" ng:show="!!(eventModel.commits && eventModel.commits.length)">
 			<li ng:repeat="commit in eventModel.commits">
 				<a href="{{ commit.url }}">{{ commit.message }}</a>
 			</li>

@@ -79,9 +79,13 @@ hr {
 			margin-bottom: $gutterSize;
 		}
 
-		li {
-			margin-bottom: $gutterSize;
-			list-style: square inside;
+		.-list {
+
+			li {
+				margin-bottom: $gutterSize;
+				list-style: square inside;
+			}
+
 		}
 
 		small {
