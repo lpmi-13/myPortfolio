@@ -8,7 +8,6 @@ module.exports = angular.module('myApp.services.tumblrService', [
 	$http,
 	$filter
 ) {
-
 	var mCache = {};
 	var m_Accounts = {
 		tumblr : {
@@ -18,23 +17,32 @@ module.exports = angular.module('myApp.services.tumblrService', [
 		}
 	};
 
-	// all our posts require the following:
+	// var schema = {
+	// 	postType: 'string',
+	// 	timeStamp: 'number',
+	// 	html: {
+	// 		caption: 'string',
+	// 		postInfo: 'string'
+	// 	},
+	// 	imageModel: {
+	// 		url: 'string',
+	// 		width: 'number',
+	// 		height: 'number'
+	// 	}
+	// };
 
-	// __postType - ie. 'TUMBLR'
-	// __timeStamp - ie. 1243253253
-	// __html.caption - ie. 'This is an example tumblr about <a href="somelink">some one</a>'
-	// __html.postInfo - ie. Posted on 17 Jul 2015
+	function _getPostObject (tumblrPost) {
+		var post = {};
 
-	function resampleTumblrPost (tumblrPost) {
-		tumblrPost.__postType = 'TUMBLR';
-		tumblrPost.__timeStamp = tumblrPost.timestamp * 1000;
+		post.postType = 'TUMBLR';
+		post.timeStamp = tumblrPost.timestamp * 1000;
 
-		tumblrPost.__html = {};
-		tumblrPost.__html.caption = tumblrPost.caption;
-		tumblrPost.__html.postInfo = 'Posted on ' + ($filter('date')(tumblrPost.__timeStamp, 'dd MMM yyyy'));
-		tumblrPost.__imageModel = tumblrPost.photos[0].alt_sizes[0];
+		post.html = {};
+		post.html.caption = tumblrPost.caption;
+		post.html.postInfo = 'Posted on ' + ($filter('date')(post.timeStamp, 'dd MMM yyyy'));
+		post.imageModel = tumblrPost.photos[0].alt_sizes[0];
 
-		return tumblrPost;
+		return post;
 	}
 
 	return {
@@ -74,7 +82,7 @@ module.exports = angular.module('myApp.services.tumblrService', [
 
 						aData.response.posts.forEach(function (tumblrPost, index) {
 							if (index < m_Accounts.tumblr.limit) {
-								posts.push(resampleTumblrPost(tumblrPost));
+								posts.push(_getPostObject(tumblrPost));
 							}
 						});
 

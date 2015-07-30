@@ -10,38 +10,42 @@ module.exports = angular.module('myApp.services.twitterService', [
 ) {
 	var mCache = {};
 
-	// all our posts require the following:
+	// var schema = {
+	// 	postType: 'string',
+	// 	timeStamp: 'number',
+	// 	html: {
+	// 		caption: 'string',
+	// 		postInfo: 'string'
+	// 	}
+	// };
 
-	// __postType - ie. 'TWEET'
-	// __timeStamp - ie. 1243253253
-	// __html.caption - ie. 'This is an example tweet about <a href="somelink">some one</a>'
-	// __html.postInfo - ie. Posted on 17 Jul 2015
+	function _getPostObject (tweet) {
+		var post = {};
 
-	function resampleTweet (tweet) {
-		tweet.__postType = 'TWEET';
-		tweet.__timeStamp = tweet.created_at * 1000;
-		tweet.__html = {};
+		post.postType = 'TWEET';
+		post.timeStamp = tweet.created_at * 1000;
+		post.html = {};
 
-		tweet.__html.caption = tweet.text;
+		post.html.caption = tweet.text;
 
 		// replace urls
 		tweet.entities.urls.forEach(function (oUrl) {
-			tweet.__html.caption = tweet.__html.caption.replace(new RegExp(oUrl.url), '<a href="' + oUrl.url +'">' + oUrl.url +'</a>');
+			post.html.caption = post.html.caption.replace(new RegExp(oUrl.url), '<a href="' + oUrl.url +'">' + oUrl.url +'</a>');
 		});
 
 		// replace tags
 		tweet.entities.hashtags.forEach(function (oTag) {
-			tweet.__html.caption = tweet.__html.caption.replace(new RegExp('#' + oTag.text), '<a href="https://twitter.com/search?q=%23' + oTag.text +'&src=hash">#' + oTag.text + '</a>');
+			post.html.caption = post.html.caption.replace(new RegExp('#' + oTag.text), '<a href="https://twitter.com/search?q=%23' + oTag.text +'&src=hash">#' + oTag.text + '</a>');
 		});
 
 		// replace usersTags
 		tweet.entities.user_mentions.forEach(function (oTag) {
-			tweet.__html.caption = tweet.__html.caption.replace(new RegExp('@' + oTag.screen_name), '<a title="' + oTag.name + '" href="https://twitter.com/' + oTag.screen_name + '">@' + oTag.screen_name + '</a>');
+			post.html.caption = post.html.caption.replace(new RegExp('@' + oTag.screen_name), '<a title="' + oTag.name + '" href="https://twitter.com/' + oTag.screen_name + '">@' + oTag.screen_name + '</a>');
 		});
 
-		tweet.__html.postInfo = 'Tweeted on ' + ($filter('date')(tweet.__timeStamp, 'dd MMM yyyy'));
+		post.html.postInfo = 'Tweeted on ' + ($filter('date')(post.timeStamp, 'dd MMM yyyy'));
 
-		return tweet;
+		return post;
 	}
 
 	return {
@@ -63,7 +67,7 @@ module.exports = angular.module('myApp.services.twitterService', [
 						}
 
 						aData.forEach(function (tweet) {
-							posts.push(resampleTweet(tweet));
+							posts.push(_getPostObject(tweet));
 						});
 
 						mCache.tweets = posts;
