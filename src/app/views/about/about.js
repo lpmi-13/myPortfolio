@@ -7,11 +7,13 @@ var template = require('./about.html');
 var headerComponent = require('../../components/header/header');
 var footerComponent = require('../../components/footer/footer');
 var blogComponent = require('../../components/blog/blog');
+var activityComponent = require('../../components/activity/activity.js');
 
 module.exports = angular.module('myApp.views.about', [
 	headerComponent.name,
 	footerComponent.name,
-	blogComponent.name
+	blogComponent.name,
+	activityComponent.name
 ])
 .directive('myViewAbout', function (
 ) {
@@ -49,5 +51,4 @@ module.exports = angular.module('myApp.views.about', [
 })
 .controller('MyViewAboutCtrl', function (
 ) {
-
 });
