@@ -1,6 +1,6 @@
 <div class="my-activity">
 
-	<p ng:if="!activity">{{ errorMessage | 'Fetching activity from APIs' }}</p>
+	<p ng:if="!activity">{{ errorMessage || 'Fetching activity from APIs' }}</p>
 
 	<div ng:repeat="eventModel in activity | limitTo:5"
 		ng:show="!!eventModel.summary"

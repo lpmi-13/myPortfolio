@@ -39,5 +39,5 @@ module.exports = angular.module('myApp.components.activity', [
 		})
 		.catch(function (exception) {
 			$scope.errorMessage = 'Error fetching activity from APIs';
-		};
+		});
 });
