@@ -1,0 +1,8 @@
+{
+    "paths": [
+        "$ProjectDir/src/app/views",
+        "$ProjectDir/src/app/components"
+    ],
+
+    "projectType": "angular"
+}
