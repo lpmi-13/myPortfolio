@@ -43,7 +43,7 @@ module.exports = angular.module('myApp.services.activityService', [
 				};
 			});
 
-			eventModel.summary = '<a href="' + eventModel.repo.url + '">' + eventModel.repo.name + '</a> - ' + (eventModel.commits.length === 1 ? '1 commit ' : eventModel.commits.length + ' commits ') + ' pushed on ' +
+			eventModel.summary = (eventModel.commits.length === 1 ? '1 commit ' : eventModel.commits.length + ' commits ') + ' pushed on ' +
 				($filter('date')(eventModel.timeStamp, 'dd MMM yyyy'));
 		}
 

@@ -32,7 +32,7 @@ module.exports = angular.module('myApp.services.blogService', [
 			$q.allSettled([tweetsPromise, tumblrPromise]).finally(function () {
 				// sort the posts
 				posts = posts.sort(function (a, b) {
-					return b.__timeStamp - a.__timeStamp;
+					return b.timeStamp - a.timeStamp;
 				});
 
 				deferred.resolve(posts);
