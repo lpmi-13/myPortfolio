@@ -1,0 +1,16 @@
+<div class="my-activity">
+
+	<p ng:if="!activity">{{ errorMessage || 'Fetching activity from APIs' }}</p>
+
+	<div ng:repeat="eventModel in activity | limitTo:5"
+		ng:show="!!eventModel.summary"
+	>
+		<h3 ng:bind-html="_getEventSummary(eventModel)"></h3>
+		<ul class="-list" ng:show="!!(eventModel.commits && eventModel.commits.length)">
+			<li ng:repeat="commit in eventModel.commits">
+				<a href="{{ commit.url }}">{{ commit.message }}</a>
+			</li>
+		</ul>
+		<hr>
+	</div>
+</div>

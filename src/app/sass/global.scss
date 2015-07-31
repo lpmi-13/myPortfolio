@@ -1,7 +1,7 @@
 
 body {
 	font-family: $mainFont;
-	font-weight: 300;
+	font-weight: $mainFontWeight;
 	color: $mainColor;
 	background: $mainBackgroundColor;
 	overflow-y: scroll;
@@ -43,7 +43,7 @@ hr {
 		background: $pageBackgroundColor;
 		line-height: 1.4;
 		text-align: justify;
-		font-size: 20px;
+		font-size: 17px;
 
 		@media only screen and (min-width: $breakPoint) {
 			// width: 80%;
@@ -61,40 +61,38 @@ hr {
 			font-size: 30px;
 			font-family: $headingFont;
 			font-weight: $headingWeight;
-			margin-bottom: 10px;
+			margin-bottom: $gutterSize;
 		}
 
 		h3 {
 			font-size: 18px;
-			line-height: 1.5;
 			font-family: $subHeadingFont;
 			font-weight: $subHeadingWeight;
-			margin-bottom: 10px;
+			margin-bottom: $gutterSize;
+		}
+
+		h4 {
+			font-weight: $mainFontWeightMid;
 		}
 
 		p {
-			margin-bottom: 10px;
+			margin-bottom: $gutterSize;
+		}
+
+		.-list {
+
+			li {
+				margin-bottom: $gutterSize;
+				list-style: square inside;
+			}
+
 		}
 
 		small {
-			font-size: 60%;
+			font-size: 70%;
+			font-weight: $smallFontWeight;
 		}
 
 		box-shadow: 0 1px 4px rgba(black, 0.1);
 	}
 }
-
-
-// skins
-@import "./skins/form.scss";
-
-// views
-@import "../views/main/_main.scss";
-@import "../views/detail/_detail.scss";
-@import "../views/about/_about.scss";
-@import "../components/avatar/_avatar.scss";
-@import "../components/projectSummary/_projectSummary.scss";
-@import "../components/header/_header.scss";
-@import "../components/footer/_footer.scss";
-@import "../components/navigation/_navigation.scss";
-@import "../components/tumblrBlogPost/_tumblrBlogPost.scss";

@@ -5,17 +5,18 @@
 	> article .my-social-networks {
 
 		text-align: center;
+		margin-top: $gutterSize;
 		margin-bottom: $gutterSize;
 
-		@media only screen and (min-width: $breakPointWide) {
-			margin-bottom: $gutterSizeMid;
+		@media only screen and (min-width: $breakPointSocialLinks) {
+			display: none;
 		}
 		
 		li {
 			display: inline-block;
 			padding: 5px;
 			border-radius: 50px;
-			background: rgba(black, 0.1);
+			background: $linkColor;
 			transition: all 0.25s ease;
 
 
@@ -28,16 +29,6 @@
 
 			&:last-child {
 				margin-right: 0;
-			}
-
-			@media only screen and (min-width: $breakPoint) {
-				border-radius: 20px;
-				margin-right: 2%;
-				width: 32%;
-	
-				&:last-child {
-					margin-right: 0;
-				}
 			}
 
 			a {
@@ -54,27 +45,12 @@
 					display: none;
 				}
 
-
 				@media only screen and (max-width: 321px) {
 					width: 80px;
 					height: 80px;
 				}
-
-				@media only screen and (min-width: $breakPoint) {
-
-					padding-left: 103px;
-					padding-right: 18px;
-					width: 100%;
-
-					span {
-						display: inline;
-						font-size: 30px;
-						font-family: $headerFont;
-						font-weight: $headerWeight;
-						color: white;
-					}
-				}
 			}
+
 
 			&.-github a {
 				background-image: url('/images/github_large.png');
@@ -90,7 +66,15 @@
 		}
 	}
 
+	.my-projects {
+		
+		margin-bottom: $gutterSize;
 
-	.project-list-item {
-	}
-}
+		li {
+			&:last-child {
+				hr {
+					display: none;
+				}
+			}
+		}
+	}}

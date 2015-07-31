@@ -1,43 +1,48 @@
 
+// dimensions
+$gutterSize: 15px;
+$gutterSizeMid: 30px;
+$gutterSizeWide: 50px;
+
+$breakPoint: 800px;
+$breakPointWide: 1200px;
+$breakPointSocialLinks: 650px;
 
 
-
-$mainFont: 'Open Sans Condensed', 'Helvetica Neue', sans-serif;
+// font family and weights - need to match the included google fonts in the link in index.html
+$mainFont: 'Open Sans', 'Helvetica Neue', sans-serif;
 $mainFontWeight: 300;
-$mainFontWeightStrong: 700;
+$mainFontWeightMid: 400;
+$smallFontWeight: 400;
+$mainFontWeightStrong: 600;
+
+$condensedFont: 'Open Sans Condensed', 'Helvetica Neue', sans-serif;
+$condensedFontWeight: 300;
+$condensedFontWeightStrong: 700;
+
+$headerFont: 'Oswald', sans-serif;
+$headerWeight: 700;
+
+$headingFont: $condensedFont;
+$headingWeight: $condensedFontWeightStrong;
+
+$subHeadingFont: 'Merriweather';
+$subHeadingWeight: 400;
+
+
+// colour scheme
 $mainColor: #69747C;
 $mainBackgroundColor: #f5f5f5;
 $pageBackgroundColor: #fafafa;
 $linkColor: #5BA4CF;
 $highlightColor: #029FFC;
-$gutterSize: 15px;
-$gutterSizeMid: 30px;
-$gutterSizeWide: 50px;
-
-$headerColor: #545454;
-$headerBackgroundColor: #FCF12F;
 
 $headerColor: white;
 $headerBackgroundColor: #cc0000;
-
-$headerFont: 'Oswald', sans-serif;
-$headerWeight: 700;
-$headerFontSize: 40px;
-
-
-$headingFont: $mainFont;
-$headingWeight: 700;
-
-$subHeadingFont: 'Merriweather';
-$subHeadingWeight: 400;
-
-$headerNavFontSize: 25px;
 $headerNavItemColor: transparent;
 
 
+// font sizes
+$headerFontSize: 40px;
+$headerNavFontSize: 25px;
 
-$breakPoint: 800px;
-$breakPointWide: 1200px;
-
-@media only screen and (min-width: $breakPoint) {
-}

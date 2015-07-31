@@ -7,6 +7,10 @@
 
 		@extend %clearfix;
 
+		img {
+			margin-bottom: $gutterSize;
+		}
+
 		> section {
 
 			@media only screen and (min-width: $breakPoint) {

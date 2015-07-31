@@ -3,5 +3,6 @@
 	"myApp_localisationInitSuccess"   : "Localisation service initialised successfully ;)",
 
 	"myViewMain_projects"             : "Projects",
-	"myViewDetail_heading"            : "#{name} - in more detail"
+	"myViewDetail_heading"            : "#{name} - in more detail",
+	"localeTestGreeting"              : "Hello #{name}"
 }
