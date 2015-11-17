@@ -3,10 +3,10 @@
 		"id"      : "fathom",
 		"website" : "http://fathomlondon.com",
 		"title"   : "Fathom - London",
-		"summary" : "Building large-scale data-driven web applications for the financial sector using AngularJS",
+		"summary" : "Building large-scale data-driven web applications for the financial sector predominantly using AngularJS",
 		"description" : "Creating web apps and components for clients ranging from tech start-ups to Tier 1 investment banks",
 		"tags" : [
-			"JavaScript", "AngularJs", "SASS", "Git", "Grunt", "HTML(5)", "CSS(3)", "Responsive-design", "REST", "Node.js"
+			"JavaScript", "AngularJs", "React", "SASS", "Git", "Grunt", "HTML(5)", "CSS(3)", "Node.js", "Responsive-design", "REST"
 		],
 		"testimonial" : {
 			"html" : "<p>Will gets results. He's an absolutely invaluable team-member to have: no matter what the task is, you know it's in good hands with Will. It's rare to come across a developer who manages to successfully juggle the combination of experience, a willingness to learn, and the pragmatism that means he gets the job done, every time. Always cheerful, funny, and a great character to have around the office, Will is a true asset to any team and I'd work with him again like a shot.</p>",
@@ -21,7 +21,7 @@
 		"summary" : "A complex, data-driven and modular JavaScript application using Backbone JS and a RESTful web API",
 		"description" : "A white labelled enterprise-level marketing resource management solution. Enables clients (such as Intel) to Create, Manage and Deliver their global marketing activities on time, on budget and on brand.",
 		"tags" : [
-			"JavaScript", "Backbone.js", "Underscore.js", "Twitter-bootstrap", "LESS", "Git", "Grunt", "HTML(5)", "CSS(3)", "Responsive-design", "REST", "Node.js"
+			"JavaScript", "Backbone.js", "Node.js", "Underscore.js", "Twitter-bootstrap", "LESS", "Git", "Grunt", "HTML(5)", "CSS(3)", "Responsive-design", "REST"
 		],
 		"testimonial" : {
 			"html" : "<p>When I hired Will, it was for his potential rather than his experience at the time. He didn't fail to impress and quickly filled the gaps in his skill set. Overall he was very dependable and easy to work with. I was really sorry to see him go and recommend him any day.</p>",
