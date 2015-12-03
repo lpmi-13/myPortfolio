@@ -1,11 +1,26 @@
 
-.my-skin-form {
+fieldset.my-skin-form {
+
+	text-align: left;
+
 	label {
 		display: block;
-		margin-bottom: 10px;
-	}
+		margin-bottom: $gutterSize;
 
-	button {
-		// @include button();
+		input-title {
+			display: inline-block;
+			margin-right: 10px;
+		}
+
+		input {
+			border: solid 1px #ccc;
+			padding: 5px 20px;
+			min-width: 50px;
+
+			&:focus {
+				outline: none;
+				border-color: $highlightColor;
+			}
+		}
 	}
 }

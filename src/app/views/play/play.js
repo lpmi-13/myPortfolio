@@ -233,7 +233,7 @@ module.exports = angular.module('myApp.views.play', [
 			return (
 				<div className="searchbox">
 				<h3>Searching wikipedia and flickr... with React and RxJS</h3>
-				<fieldset className="my-form">
+				<fieldset className="my-skin-form">
 					<label>
 						<input-title>Type something</input-title>
 						<input type="text" onKeyUp={this.handleInputKeyUp} />
