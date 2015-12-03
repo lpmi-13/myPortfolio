@@ -5,31 +5,8 @@
 
 	> article {
 
-		@extend %clearfix;
-
 		img {
 			margin-bottom: $gutterSize;
-		}
-
-		> section {
-
-			@media only screen and (min-width: $breakPoint) {
-
-				float: left;
-				width: 55%;
-
-				&:first-child {
-					width: 45%;
-					padding-right: $gutterSizeMid;
-				}
-			}
-
-			@media only screen and (min-width: $breakPointWide) {
-
-				&:first-child {
-					padding-right: $gutterSizeWide;
-				}
-			}
 		}
 	}
 
