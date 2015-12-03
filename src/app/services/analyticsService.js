@@ -9,13 +9,13 @@ module.exports = angular.module('myApp.services.analyticsService', [
 	$rootScope,
 	$window
 ) {
-	var googelAnalytics = $window.ga;
+	var googleAnalytics = $window.ga;
 
 	function _trackPageView () {
 		// use the ga google analytics object
 		var pageUrl = $location.url();
 		window.console.log(pageUrl);
-		googelAnalytics('send', 'pageview', pageUrl);
+		googleAnalytics('send', 'pageview', pageUrl);
 	}
 
 	function _init () {

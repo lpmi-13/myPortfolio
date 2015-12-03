@@ -17,21 +17,22 @@ module.exports = angular.module('myApp.services.tumblrService', [
 		}
 	};
 
-	// var schema = {
-	// 	postType: 'string',
-	// 	timeStamp: 'number',
-	// 	html: {
-	// 		caption: 'string',
-	// 		postInfo: 'string'
-	// 	},
-	// 	imageModel: {
-	// 		url: 'string',
-	// 		width: 'number',
-	// 		height: 'number'
-	// 	}
-	// };
-
+	// The BlogService requires certain properties such as postType and timestamp
+	// so this method extracts the raw tumblr post object
 	function _getPostObject (tumblrPost) {
+		// schema = {
+		// 	postType: 'string',
+		// 	timeStamp: 'number',
+		// 	html: {
+		// 		caption: 'string',
+		// 		postInfo: 'string'
+		// 	},
+		// 	imageModel: {
+		// 		url: 'string',
+		// 		width: 'number',
+		// 		height: 'number'
+		// 	}
+		// };
 		var post = {};
 
 		post.postType = 'TUMBLR';

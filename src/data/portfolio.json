@@ -6,7 +6,7 @@
 		"summary" : "Building large-scale data-driven web applications for the financial sector predominantly using AngularJS",
 		"description" : "Creating web apps and components for clients ranging from tech start-ups to Tier 1 investment banks",
 		"tags" : [
-			"JavaScript", "AngularJs", "React", "SASS", "Git", "Grunt", "HTML(5)", "CSS(3)", "Node.js", "Responsive-design", "REST"
+			"JavaScript", "AngularJs", "React", "SASS", "Git", "Gulp", "Grunt", "Browserify", "HTML(5)", "CSS(3)", "Node.js", "Responsive-design", "REST"
 		],
 		"testimonial" : {
 			"html" : "<p>Will gets results. He's an absolutely invaluable team-member to have: no matter what the task is, you know it's in good hands with Will. It's rare to come across a developer who manages to successfully juggle the combination of experience, a willingness to learn, and the pragmatism that means he gets the job done, every time. Always cheerful, funny, and a great character to have around the office, Will is a true asset to any team and I'd work with him again like a shot.</p>",

@@ -11,6 +11,7 @@ var analyticsService = require('./services/analyticsService');
 var viewMain = require('./views/main/main');
 var viewAbout = require('./views/about/about');
 var viewDetail = require('./views/detail/detail');
+var viewPlay = require('./views/play/play');
 var viewTax = require('./views/tax/tax');
 
 angular.module('myApp', [
@@ -20,6 +21,7 @@ angular.module('myApp', [
 	viewMain.name,
 	viewAbout.name,
 	viewDetail.name,
+	viewPlay.name,
 	viewTax.name,
 	'ngRoute'
 ])
@@ -36,6 +38,7 @@ angular.module('myApp', [
 				return '<my:view-detail data-key="' + params.key + '"></my:view-detail>';
 			}
 		})
+		.when('/play', { template: '<my:view-play></my:view-play>' })
 		.when('/tax', { template: '<my:view-tax></my:view-tax>' })
 		.otherwise({ redirectTo: '/' });
 

@@ -10,16 +10,18 @@ module.exports = angular.module('myApp.services.twitterService', [
 ) {
 	var mCache = {};
 
-	// var schema = {
-	// 	postType: 'string',
-	// 	timeStamp: 'number',
-	// 	html: {
-	// 		caption: 'string',
-	// 		postInfo: 'string'
-	// 	}
-	// };
-
+	// The BlogService requires certain properties such as postType and timestamp
+	// so this method restructures the raw tweet
+	// TODO: Handle photos in tweets - only handling the text at the moment
 	function _getPostObject (tweet) {
+		// schema = {
+		// 	postType: 'string',
+		// 	timeStamp: 'number',
+		// 	html: {
+		// 		caption: 'string',
+		// 		postInfo: 'string'
+		// 	}
+		// };
 		var post = {};
 
 		post.postType = 'TWEET';
@@ -61,7 +63,7 @@ module.exports = angular.module('myApp.services.twitterService', [
 						var posts = [];
 
 						if (!angular.isArray(aData)) {
-							window.console.warn('error getting tweets - prob running node server');
+							window.console.warn('Error getting tweets.', 'Expecting an array of tweets');
 							deferred.reject();
 							return;
 						}
@@ -76,7 +78,7 @@ module.exports = angular.module('myApp.services.twitterService', [
 					})
 					.error(function(data, status, headers, config) {
 						// log error
-						window.console.warn('error getting tweets');
+						window.console.warn('Error getting tweets', arguments);
 						deferred.reject();
 					});
 			}

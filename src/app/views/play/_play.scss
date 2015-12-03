@@ -1,9 +1,17 @@
 
-.my-tax-calculator {
+.view-play {
 	
 	@extend %clearfix;
 
-	> fieldset {
+	.photoresults {
+		min-height: 75px;
+
+		> .photo {
+			margin: 0 $gutterSize $gutterSize 0;
+		}
+	}
+
+	fieldset {
 
 		text-align: left;
 
@@ -27,9 +35,5 @@
 				}
 			}
 		}
-	}
-
-	> section {
-
 	}
 }

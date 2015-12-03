@@ -29,8 +29,9 @@ module.exports = angular.module('myApp.services.blogService', [
 				posts = posts.concat(tumblrPosts);
 			});
 
+			// the blog posts are a mixture of tumblr posts and tweets
 			$q.allSettled([tweetsPromise, tumblrPromise]).finally(function () {
-				// sort the posts
+				// initially sort the posts chronologically- most recent first 
 				posts = posts.sort(function (a, b) {
 					return b.timeStamp - a.timeStamp;
 				});
