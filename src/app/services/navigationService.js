@@ -20,6 +20,11 @@ module.exports = angular.module('myApp.services.navigationService', [
 					path: '/about'
 				},
 				{
+					title: 'Play',
+					url: '/#/play',
+					path: '/play'
+				},
+				{
 					title: 'Resume',
 					url: 'http://bit.ly/1cGjA8X'
 				}
