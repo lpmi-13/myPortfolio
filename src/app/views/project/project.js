@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular');
-var template = require('./detail.html');
+var template = require('./project.html');
 // services
 var projectService = require('../../services/projectService');
 // sub components
@@ -15,21 +15,21 @@ var avatarComponent = require('../../components/avatar/avatar');
 //		namespaceTypeName (examples: wtComponentAvatar or dinoViewDetail )
 // 
 // template use:
-// <namespace:type-name></namespace:type-name> (examples: <wt:component-avatar></wt:component-avatar> or <dino:view-detail></dino:view-detail> )
+// <namespace:type-name></namespace:type-name> (examples: <wt:component-avatar></wt:component-avatar> or <dino:view-project></dino:view-project> )
 
-module.exports = angular.module('myApp.views.detail', [
+module.exports = angular.module('myApp.views.project', [
 	projectService.name,
 	headerComponent.name,
 	footerComponent.name,
 	avatarComponent.name
 ])
-.directive('myViewDetail', function (
+.directive('myViewProject', function (
 	MyProjectService
 ) {
 	return {
 		restrict: 'E',
 		template: template,
-		controller: 'MyViewDetailCtrl as Detail',
+		controller: 'MyViewProjectCtrl as Project',
 		replace: true,
 		scope: {
 			key: '='
@@ -38,16 +38,16 @@ module.exports = angular.module('myApp.views.detail', [
 		}
 	};
 })
-.controller('MyViewDetailCtrl', function (
+.controller('MyViewProjectCtrl', function (
 	$sce,
 	$scope,
-	$routeParams,
+	$stateParams,
 	MyProjectService
 ) {
-	var Detail = this;
+	var Project = this;
 
-	Detail.getTestimonialQuoteHtml = function () {
-		var testimonial = Detail.details && Detail.details.testimonial;
+	Project.getTestimonialQuoteHtml = function () {
+		var testimonial = Project.details && Project.details.testimonial;
 
 		if (!testimonial) {
 			return null;
@@ -56,8 +56,8 @@ module.exports = angular.module('myApp.views.detail', [
 		return $sce.trustAsHtml(testimonial.html);
 	};
 
-	Detail.getTestimonialAuthor = function () {
-		var testimonial = Detail.details && Detail.details.testimonial;
+	Project.getTestimonialAuthor = function () {
+		var testimonial = Project.details && Project.details.testimonial;
 
 		if (!testimonial) {
 			return null;
@@ -66,17 +66,19 @@ module.exports = angular.module('myApp.views.detail', [
 		return testimonial.author;
 	};
 
-	Detail.getDetails = function (id) {
+	Project.getDetails = function (id) {
+		Project.message = null;
 		return MyProjectService.get(id)
 			.then(function (details) {
-				Detail.details = details;
+				Project.details = details;
 				// console.log('retrieved', $scope.details);
 			})
 			.catch(function (err) {
+				Project.error = 'Sorry, the project cannot be found';
 				console.warn('getDetails error', id, err);
 			});
 	};
 
-	Detail.key = $routeParams.key;
-	Detail.getDetails(Detail.key);
+	Project.key = $stateParams.projectKey;
+	Project.getDetails(Project.key);
 });

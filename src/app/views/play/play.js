@@ -7,13 +7,10 @@ var $ = require('jquery');
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Rx = require('rx');
-// services
 
 // sub components
 var headerComponent = require('../../components/header/header');
 var footerComponent = require('../../components/footer/footer');
-
-
 
 // directive name:
 //		namespaceTypeName (examples: wtComponentAvatar or dinoViewPlay )
@@ -22,7 +19,6 @@ var footerComponent = require('../../components/footer/footer');
 // <namespace:type-name></namespace:type-name> (examples: <wt:component-avatar></wt:component-avatar> or <dino:view-play></dino:view-play> )
 
 module.exports = angular.module('myApp.views.play', [
-	// projectService.name,
 	headerComponent.name,
 	footerComponent.name
 ])
@@ -41,9 +37,6 @@ module.exports = angular.module('myApp.views.play', [
 	};
 })
 .controller('MyViewPlayCtrl', function (
-	$sce,
-	$scope,
-	$routeParams
 ) {
 	// var Play = this;
 

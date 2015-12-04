@@ -5,24 +5,24 @@ var angular = require('angular');
 module.exports = angular.module('myApp.services.navigationService', [
 ])
 .service('NavigationService', function (
+	STATE_NAME_ABOUT,
+	STATE_NAME_PROJECTS,
+	STATE_NAME_PLAY
 ) {
 	return {
 		getMainNavItems: function () {
 			return [
 				{
-					title: 'Projects',
-					url: '/#/',
-					path: '/'
+					title: 'About',
+					state: STATE_NAME_ABOUT
 				},
 				{
-					title: 'About',
-					url: '/#/about',
-					path: '/about'
+					title: 'Projects',
+					state: STATE_NAME_PROJECTS
 				},
 				{
 					title: 'Play',
-					url: '/#/play',
-					path: '/play'
+					state: STATE_NAME_PLAY
 				},
 				{
 					title: 'Resume',

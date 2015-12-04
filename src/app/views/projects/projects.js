@@ -1,7 +1,7 @@
 'use strict';
 
 var angular = require('angular');
-var template = require('./main.html');
+var template = require('./projects.html');
 // services
 var projectService = require('../../services/projectService');
 // sub components
@@ -18,20 +18,20 @@ var projectSummaryComponent = require('../../components/projectSummary/projectSu
 // template use:
 // <namespace:type-name></namespace:type-name> (examples: <wt:component-avatar></wt:component-avatar> or <dino:view-detail></dino:view-detail> )
 
-module.exports = angular.module('myApp.views.main', [
+module.exports = angular.module('myApp.views.projects', [
 	projectService.name,
 	headerComponent.name,
 	footerComponent.name,
 	socialNetworksComponent.name,
 	projectSummaryComponent.name
 ])
-.directive('myViewMain', function (
+.directive('myViewProjects', function (
 	MyProjectService
 ) {
 	return {
 		restrict: 'E',
 		template: template,
-		controller: 'MyViewMainCtrl',
+		controller: 'MyViewProjectsCtrl',
 		replace: true,
 		scope: {
 		},
@@ -41,7 +41,7 @@ module.exports = angular.module('myApp.views.main', [
 		}
 	};
 })
-.controller('MyViewMainCtrl', function (
+.controller('MyViewProjectsCtrl', function (
 	$scope,
 	MyProjectService
 ) {
