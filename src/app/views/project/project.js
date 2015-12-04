@@ -67,12 +67,14 @@ module.exports = angular.module('myApp.views.project', [
 	};
 
 	Project.getDetails = function (id) {
+		Project.message = null;
 		return MyProjectService.get(id)
 			.then(function (details) {
 				Project.details = details;
 				// console.log('retrieved', $scope.details);
 			})
 			.catch(function (err) {
+				Project.error = 'Sorry, the project cannot be found';
 				console.warn('getDetails error', id, err);
 			});
 	};
