@@ -6,12 +6,14 @@ var template = require('./about.html');
 // sub components
 var headerComponent = require('../../components/header/header');
 var footerComponent = require('../../components/footer/footer');
+var socialNetworksComponent = require('../../components/socialNetworks/socialNetworks');
 var blogComponent = require('../../components/blog/blog');
 var activityComponent = require('../../components/activity/activity.js');
 
 module.exports = angular.module('myApp.views.about', [
 	headerComponent.name,
 	footerComponent.name,
+	socialNetworksComponent.name,
 	blogComponent.name,
 	activityComponent.name
 ])

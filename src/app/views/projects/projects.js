@@ -7,7 +7,6 @@ var projectService = require('../../services/projectService');
 // sub components
 var headerComponent = require('../../components/header/header');
 var footerComponent = require('../../components/footer/footer');
-var socialNetworksComponent = require('../../components/socialNetworks/socialNetworks');
 var projectSummaryComponent = require('../../components/projectSummary/projectSummary');
 
 
@@ -22,7 +21,6 @@ module.exports = angular.module('myApp.views.projects', [
 	projectService.name,
 	headerComponent.name,
 	footerComponent.name,
-	socialNetworksComponent.name,
 	projectSummaryComponent.name
 ])
 .directive('myViewProjects', function (
