@@ -22,30 +22,34 @@ module.exports = angular.module('myApp.services.twitterService', [
 		// 		postInfo: 'string'
 		// 	}
 		// };
-		var post = {};
+		var post = {
+			__props: {
 
-		post.postType = 'TWEET';
-		post.timeStamp = tweet.created_at * 1000;
-		post.html = {};
+			}
+		};
 
-		post.html.caption = tweet.text;
+		post.__props.type = 'TWEET';
+		post.__props.timeStamp = tweet.created_at * 1000;
+		post.__props.html = {};
+
+		post.__props.html.caption = tweet.text;
 
 		// replace urls
 		tweet.entities.urls.forEach(function (oUrl) {
-			post.html.caption = post.html.caption.replace(new RegExp(oUrl.url), '<a href="' + oUrl.url +'">' + oUrl.url +'</a>');
+			post.__props.html.caption = post.__props.html.caption.replace(new RegExp(oUrl.url), '<a href="' + oUrl.url +'">' + oUrl.url +'</a>');
 		});
 
 		// replace tags
 		tweet.entities.hashtags.forEach(function (oTag) {
-			post.html.caption = post.html.caption.replace(new RegExp('#' + oTag.text), '<a href="https://twitter.com/search?q=%23' + oTag.text +'&src=hash">#' + oTag.text + '</a>');
+			post.__props.html.caption = post.__props.html.caption.replace(new RegExp('#' + oTag.text), '<a href="https://twitter.com/search?q=%23' + oTag.text +'&src=hash">#' + oTag.text + '</a>');
 		});
 
 		// replace usersTags
 		tweet.entities.user_mentions.forEach(function (oTag) {
-			post.html.caption = post.html.caption.replace(new RegExp('@' + oTag.screen_name), '<a title="' + oTag.name + '" href="https://twitter.com/' + oTag.screen_name + '">@' + oTag.screen_name + '</a>');
+			post.__props.html.caption = post.__props.html.caption.replace(new RegExp('@' + oTag.screen_name), '<a title="' + oTag.name + '" href="https://twitter.com/' + oTag.screen_name + '">@' + oTag.screen_name + '</a>');
 		});
 
-		post.html.postInfo = 'Tweeted on ' + ($filter('date')(post.timeStamp, 'dd MMM yyyy'));
+		post.__props.html.postInfo = 'Tweeted on ' + ($filter('date')(post.timeStamp, 'dd MMM yyyy'));
 
 		return post;
 	}

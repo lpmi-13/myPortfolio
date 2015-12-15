@@ -2,10 +2,10 @@
 	<p><small ng:bind-html="_getPostInfo()"></small></p>
 
 	<my:loading-image
-		ng:if="!!Post.model.imageModel"
-		data-url="Post.model.imageModel.url"
-		data-width="Post.model.imageModel.width"
-		data-height="Post.model.imageModel.height"
+		ng:if="!!Post.model.__props.imageModel"
+		data-url="Post.model.__props.imageModel.url"
+		data-width="Post.model.__props.imageModel.width"
+		data-height="Post.model.__props.imageModel.height"
 	>
 	</my:loading-image>
 	

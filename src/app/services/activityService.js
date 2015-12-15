@@ -1,102 +1,70 @@
 'use strict';
 
 var angular = require('angular');
+var Rx = require('rx');
+
+var twitterService = require('./twitterService.js');
+var githubService = require('./githubService.js');
 
 module.exports = angular.module('myApp.services.activityService', [
+	twitterService.name,
+	githubService.name
 ])
-.constant('GITHUB_BASE_URL', 'https://github.com/')
-.constant('GITHUB_API_BASE_URL', 'https://api.github.com/')
-.constant('GITHUB_USER', 'SirKettle')
 .service('ActivityService', function (
 	$q,
 	$http,
 	$filter,
-
-	GITHUB_BASE_URL,
-	GITHUB_API_BASE_URL,
-	GITHUB_USER
+	GithubService
 ) {
-	var mCache = {};
+	var mActivityFeed = Rx.Observable.create(function (observer) {
 
-	function _getUserObject (user) {
-		var userModel = user;
+		var feed = ['A lovely quote', 'Interesting tweet', 'A git commit...'];
+		var feedIndex = 0;
+		var updateIntervalSeconds = 1;
 
-		return userModel;
-	}
+		var intervalId = window.setInterval(function () {
+			try {
 
-	function _getEventObject (eventData) {
-		var eventModel = {};
+				feedIndex++;
 
-		eventModel.timeStamp = new Date(eventData.created_at).getTime();
+				if (!feed[feedIndex]) {
+					feedIndex = 0;
+				}
 
-		if (eventData.type === 'PushEvent') {
+				// Call this to update the feed
+				observer.onNext(feed[feedIndex]);
 
-			eventModel.repo = {
-				name: eventData.repo.name,
-				url: GITHUB_BASE_URL + eventData.repo.name
-			};
+				// If we are completeing the feed (?), call this
+				// observer.onCompleted();
+			} catch (error) {
+				observer.onError(error);
+			}
 
-			eventModel.commits = eventData.payload.commits.map(function (commitData) {
-				return {
-					message: commitData.message,
-					url: eventModel.repo.url + '/commit/' + commitData.sha
-				};
-			});
+		}, updateIntervalSeconds * 1000);
 
-			eventModel.summary = (eventModel.commits.length === 1 ? '1 commit ' : eventModel.commits.length + ' commits ') + ' pushed on ' +
-				($filter('date')(eventModel.timeStamp, 'dd MMM yyyy'));
-		}
+		// TODO: lets get all my tweets and git hub activity, and then every 5 seconds
+		// update the feed with a new random message and mayeb a random quote thrown in
 
-		return eventModel;
-	}
+		api.getActivity(true).then(function (data) {
+			feed = feed.concat(data.activity.map(function (eventModel) {
+				return eventModel;
+			}));
+		});
 
-	return {
+		return function () {
+			window.console.log('Activity feed - observer - disposal called');
+			clearInterval(intervalId);
+		};
+	});
+
+	var api = {
 		getActivity: function (useCache) {
-			var deferred = $q.defer();
-
-			if (Boolean(useCache && mCache.user && mCache.activity)) {
-				deferred.resolve(mCache);
-			}
-			else {
-
-				$http.get(GITHUB_API_BASE_URL + 'users/' + GITHUB_USER)
-					.success(function(user, status, headers, config) {
-
-						mCache.user = _getUserObject(user);
-
-						$http.get(GITHUB_API_BASE_URL + 'users/' + GITHUB_USER + '/events')
-							.success(function(aData, status, headers, config) {
-								var activity = [];
-
-								if (!angular.isArray(aData)) {
-									window.console.warn('error getting github activity');
-									deferred.reject();
-									return;
-								}
-
-								aData.forEach(function (eventData) {
-									activity.push(_getEventObject(eventData));
-								});
-
-								mCache.activity = activity;
-
-								deferred.resolve(mCache);
-							})
-							.error(function(data, status, headers, config) {
-								// log error
-								window.console.warn('error getting activity', data);
-								deferred.reject(data);
-							});
-
-					})
-					.error(function(data, status, headers, config) {
-						// log error
-						window.console.warn('error getting user', data);
-						deferred.reject(data);
-					});
-			}
-
-			return deferred.promise;
+			return GithubService.getActivity(useCache);
+		},
+		feeds: {
+			activity: mActivityFeed
 		}
 	};
+
+	return api;
 });

@@ -33,15 +33,19 @@ module.exports = angular.module('myApp.services.tumblrService', [
 		// 		height: 'number'
 		// 	}
 		// };
-		var post = {};
+		var post = {
+			__props: {
 
-		post.postType = 'TUMBLR';
-		post.timeStamp = tumblrPost.timestamp * 1000;
+			}
+		};
 
-		post.html = {};
-		post.html.caption = tumblrPost.caption;
-		post.html.postInfo = 'Posted on ' + ($filter('date')(post.timeStamp, 'dd MMM yyyy'));
-		post.imageModel = tumblrPost.photos[0].alt_sizes[0];
+		post.__props.type = 'TUMBLR';
+		post.__props.timeStamp = tumblrPost.timestamp * 1000;
+
+		post.__props.html = {};
+		post.__props.html.caption = tumblrPost.caption;
+		post.__props.html.postInfo = 'Posted on ' + ($filter('date')(post.__props.timeStamp, 'dd MMM yyyy'));
+		post.__props.imageModel = tumblrPost.photos[0].alt_sizes[0];
 
 		return post;
 	}

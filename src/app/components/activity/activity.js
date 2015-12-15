@@ -30,14 +30,33 @@ module.exports = angular.module('myApp.components.activity', [
 	ActivityService,
 	$scope
 ) {
+	var activitySubscription = ActivityService.feeds.activity.subscribe(_handleFeedSubscriptionUpdated, _handleFeedSubscriptionError);
+	ActivityService.getActivity(true).then(_onActivityLoaded).catch(_onActivityLoadedError);
+	$scope.$on('$destroy', _onDestroyed);
 
 
-	ActivityService.getActivity().then(function (data) {
-			console.log(data);
+	/* ************************************
+		EVENT HANDLERS / PRIVATE METHODS
+	************************************ */
 
-			$scope.activity = data.activity;
-		})
-		.catch(function (exception) {
-			$scope.errorMessage = 'Error fetching activity from APIs';
-		});
+	function _onActivityLoaded (data) {
+		window.console.log(data);
+		$scope.activity = data.activity;
+	}
+
+	function _onActivityLoadedError (exception) {
+		$scope.errorMessage = 'Error fetching activity from APIs';
+	}
+
+	function _handleFeedSubscriptionUpdated (feed) {
+		window.console.log(feed);
+	}
+
+	function _handleFeedSubscriptionError (error) {
+		window.console.error(error);
+	}
+
+	function _onDestroyed () {
+		activitySubscription.dispose();
+	}
 });

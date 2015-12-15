@@ -33,7 +33,7 @@ module.exports = angular.module('myApp.services.blogService', [
 			$q.allSettled([tweetsPromise, tumblrPromise]).finally(function () {
 				// initially sort the posts chronologically- most recent first 
 				posts = posts.sort(function (a, b) {
-					return b.timeStamp - a.timeStamp;
+					return b.__props.timeStamp - a.__props.timeStamp;
 				});
 
 				deferred.resolve(posts);
