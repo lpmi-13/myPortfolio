@@ -40,7 +40,6 @@ module.exports = angular.module('myApp.components.activity', [
 	************************************ */
 
 	function _onActivityLoaded (data) {
-		window.console.log(data);
 		$scope.activity = data.activity;
 	}
 
