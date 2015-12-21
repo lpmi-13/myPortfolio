@@ -30,7 +30,7 @@ module.exports = angular.module('myApp.components.activity', [
 	ActivityService,
 	$scope
 ) {
-	var activitySubscription = ActivityService.feeds.activity.subscribe(_handleFeedSubscriptionUpdated, _handleFeedSubscriptionError);
+	// var activitySubscription = ActivityService.feeds.activity.subscribe(_handleFeedSubscriptionUpdated, _handleFeedSubscriptionError);
 	ActivityService.getActivity(true).then(_onActivityLoaded).catch(_onActivityLoadedError);
 	$scope.$on('$destroy', _onDestroyed);
 
