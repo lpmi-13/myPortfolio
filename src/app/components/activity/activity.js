@@ -56,6 +56,6 @@ module.exports = angular.module('myApp.components.activity', [
 	}
 
 	function _onDestroyed () {
-		activitySubscription.dispose();
+		// activitySubscription.dispose();
 	}
 });
