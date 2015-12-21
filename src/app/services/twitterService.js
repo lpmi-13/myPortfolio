@@ -49,7 +49,21 @@ module.exports = angular.module('myApp.services.twitterService', [
 			post.__props.html.caption = post.__props.html.caption.replace(new RegExp('@' + oTag.screen_name), '<a title="' + oTag.name + '" href="https://twitter.com/' + oTag.screen_name + '">@' + oTag.screen_name + '</a>');
 		});
 
-		post.__props.html.postInfo = 'Tweeted on ' + ($filter('date')(post.timeStamp, 'dd MMM yyyy'));
+		post.__props.html.postInfo = 'Tweeted on ' + ($filter('date')(post.__props.timeStamp, 'dd MMM yyyy'));
+
+		if (tweet.entities.media) {
+			var photo = tweet.entities.media.filter(function (oMedia) {
+				return oMedia.type === 'photo';
+			})[0];
+
+			if (photo) {
+				post.__props.imageModel = {
+					url: photo.media_url,
+					width: photo.sizes.medium.w,
+					height: photo.sizes.medium.h
+				}
+			}
+		}
 
 		return post;
 	}
