@@ -59,8 +59,7 @@ module.exports = angular.module('myApp.services.githubService', [
 			eventModel.__props.timeStamp = eventModel.timeStamp;
 			eventModel.__props.html = {};
 			eventModel.__props.html.caption = captionText;
-			eventModel.__props.html.postInfo = (eventModel.commits.length === 1 ? '1 commit ' : eventModel.commits.length + ' commits ') + ' pushed on ' +
-				($filter('date')(eventModel.timeStamp, 'dd MMM yyyy'));
+			eventModel.__props.html.postInfo = eventModel.summary;
 
 		}
 
