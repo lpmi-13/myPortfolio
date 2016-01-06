@@ -4,9 +4,12 @@ var angular = require('angular');
 var template = require('./activity.html');
 
 var activityService = require('../../services/activityService.js');
+// sub components
+var blogPostComponent = require('../../components/blogPost/blogPost');
 
 module.exports = angular.module('myApp.components.activity', [
-	activityService.name
+	activityService.name,
+	blogPostComponent.name
 ])
 .directive('myActivity', function (
 	$sce
@@ -30,7 +33,7 @@ module.exports = angular.module('myApp.components.activity', [
 	ActivityService,
 	$scope
 ) {
-	// var activitySubscription = ActivityService.feeds.activity.subscribe(_handleFeedSubscriptionUpdated, _handleFeedSubscriptionError);
+	var activitySubscription = ActivityService.feeds.activity.subscribe(_handleFeedSubscriptionUpdated, _handleFeedSubscriptionError);
 	ActivityService.getActivity(true).then(_onActivityLoaded).catch(_onActivityLoadedError);
 	$scope.$on('$destroy', _onDestroyed);
 
@@ -45,6 +48,7 @@ module.exports = angular.module('myApp.components.activity', [
 
 	function _onActivityLoadedError (exception) {
 		$scope.errorMessage = 'Error fetching activity from APIs';
+		$scope.errorMessageDetails = (exception.message ? exception.message : '');
 	}
 
 	function _handleFeedSubscriptionUpdated (feed) {

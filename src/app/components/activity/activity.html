@@ -1,8 +1,11 @@
 <div class="my-activity">
 
-	<p ng:if="!activity">{{ errorMessage || 'Fetching activity from APIs' }}</p>
+	<div ng:if="!activity">
+		<h3>{{ errorMessage || 'Fetching activity from APIs' }}</h3>
+		<p ng:if="errorMessage && errorMessageDetails">{{ errorMessageDetails }}</p>
+	</div>
 
-	<div ng:repeat="eventModel in activity | limitTo:5"
+	<!-- <div ng:repeat="eventModel in activity | limitTo:5"
 		ng:show="!!eventModel.summary"
 	>
 		<p><small ng:bind-html="_getEventSummary(eventModel)"></small><small> - <a href="{{ eventModel.repo.url }}">{{ eventModel.repo.name }}</a></small></p>
@@ -11,6 +14,19 @@
 				<a href="{{ commit.url }}">{{ commit.message }}</a>
 			</li>
 		</ul>
+
 		<hr>
+	</div> -->
+	<div class="my-blog"> 
+		<ul>
+			<li ng:repeat="post in activity | limitTo:5"
+			>
+				<my:blog-post
+					data-model="post"
+				></my:blog-post>
+			</li>
+		</ul>
 	</div>
+	
+	<hr>
 </div>

@@ -50,15 +50,20 @@ module.exports = angular.module('myApp.services.githubService', [
 			eventModel.summary = (eventModel.commits.length === 1 ? '1 commit ' : eventModel.commits.length + ' commits ') + ' pushed on ' +
 				($filter('date')(eventModel.timeStamp, 'dd MMM yyyy'));
 
-			var captionText = eventModel.commits.map(function (commit) {
-					return '<a href="' + commit.url +'">#' + commit.message + '</a>'
-				}).join('<br />');
+			// var captionText = eventModel.commits.map(function (commit) {
+			// 		return '<a href="' + commit.url +'">' + commit.message + '</a>'
+			// 	}).join('<br />');
+
+			var captionHtml = '<ul class="-list">' + eventModel.commits.map(function (commit) {
+					return '<li><a href="' + commit.url +'">' + commit.message + '</a></li>'
+				}) + '</ul>';
 			
 
 			eventModel.__props.type = 'GITHUB';
 			eventModel.__props.timeStamp = eventModel.timeStamp;
 			eventModel.__props.html = {};
-			eventModel.__props.html.caption = captionText;
+			// eventModel.__props.html.caption = captionText;
+			eventModel.__props.html.caption = captionHtml;
 			eventModel.__props.html.postInfo = eventModel.summary;
 
 		}
