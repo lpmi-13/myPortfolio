@@ -5,18 +5,6 @@
 		<p ng:if="errorMessage && errorMessageDetails">{{ errorMessageDetails }}</p>
 	</div>
 
-	<!-- <div ng:repeat="eventModel in activity | limitTo:5"
-		ng:show="!!eventModel.summary"
-	>
-		<p><small ng:bind-html="_getEventSummary(eventModel)"></small><small> - <a href="{{ eventModel.repo.url }}">{{ eventModel.repo.name }}</a></small></p>
-		<ul class="-list" ng:show="!!(eventModel.commits && eventModel.commits.length)">
-			<li ng:repeat="commit in eventModel.commits">
-				<a href="{{ commit.url }}">{{ commit.message }}</a>
-			</li>
-		</ul>
-
-		<hr>
-	</div> -->
 	<div class="my-blog"> 
 		<ul>
 			<li ng:repeat="post in activity | limitTo:5"
