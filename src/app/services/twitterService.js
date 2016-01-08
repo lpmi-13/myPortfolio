@@ -10,6 +10,15 @@ module.exports = angular.module('myApp.services.twitterService', [
 ) {
 	var mCache = {};
 
+	function replaceLink (text) {
+
+		if (text.indexOf('http') === 0) {
+			text = '<a href="' + text + '">' + text + '</a>';
+		}
+
+		return text;
+	}
+
 	// The BlogService requires certain properties such as postType and timestamp
 	// so this method restructures the raw tweet
 	// TODO: Handle photos in tweets - only handling the text at the moment
@@ -32,9 +41,10 @@ module.exports = angular.module('myApp.services.twitterService', [
 		post.__props.timeStamp = tweet.created_at * 1000;
 		post.__props.html = {};
 
-		post.__props.html.caption = tweet.text;
+		// set inital caption text and replace urls in the text
+		post.__props.html.caption = tweet.text.split(' ').map(replaceLink).join(' ');
 
-		// replace urls
+		// add urls from the entities
 		tweet.entities.urls.forEach(function (oUrl) {
 			post.__props.html.caption = post.__props.html.caption.replace(new RegExp(oUrl.url), '<a href="' + oUrl.url +'">' + oUrl.url +'</a>');
 		});
