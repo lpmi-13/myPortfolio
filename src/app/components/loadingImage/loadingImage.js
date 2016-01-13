@@ -23,24 +23,30 @@ module.exports = angular.module('myApp.components.loadingImage', [
 			var imageElem = elem.find('img')[0];
 			var imageWidth = imageElem && imageElem.clientWidth;
 
-			// need to temporarily add height to image while it's loading
-			if (scope.width && scope.height) {
-				scope._tempImageHeight = Math.round((imageWidth / scope.width) * scope.height) + 'px';
-			}
+			function _initImage () {
+				scope._imageSrc = null;
 
-			// create new image to load
-			imageToLoad = new Image();
-			imageToLoad.src = scope.url;
-			imageToLoad.onload = function () {
-				scope._imageSrc = scope.url;
-				
+				// need to temporarily add height to image while it's loading
 				if (scope.width && scope.height) {
-					scope._tempImageHeight = 'auto';
+					scope._tempImageHeight = Math.round((imageWidth / scope.width) * scope.height) + 'px';
 				}
 
-				scope.$digest();
-			};
+				// create new image to load
+				imageToLoad = new Image();
+				imageToLoad.src = scope.url;
+				imageToLoad.onload = function () {
+					scope._imageSrc = scope.url;
+					
+					if (scope.width && scope.height) {
+						scope._tempImageHeight = 'auto';
+					}
 
+					scope.$digest();
+				};				
+			}
+
+			scope.$watch('url', _initImage);
+			_initImage();
 		}
 	};
 })

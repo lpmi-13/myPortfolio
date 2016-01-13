@@ -44,4 +44,10 @@ module.exports = angular.module('myApp.components.blogPost', [
 ) {
 	var Post = this;
 	Post.model = $scope.model;
+
+	$scope.$watch('model', function () {
+		Post.model = $scope.model;
+	});
+
+	console.log(Post);
 });
