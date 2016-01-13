@@ -17,11 +17,11 @@ module.exports = angular.module('myApp.components.activity', [
 	return {
 		restrict: 'E',
 		template: template,
-		controller: 'MyActivityCtrl',
+		controller: 'MyActivityCtrl as ctrl',
 		replace: true,
 		scope: {
 		},
-		link: function (scope, elem, attrs, controller) {
+		link: function (scope, elem, attrs, ctrl) {
 
 			scope._getEventSummary = function (eventModel) {
 				return $sce.trustAsHtml(eventModel.summary);
@@ -31,10 +31,15 @@ module.exports = angular.module('myApp.components.activity', [
 })
 .controller('MyActivityCtrl', function (
 	ActivityService,
-	$scope
+	$scope,
+	$interval
 ) {
+	var ctrl = this;
+	var activityFeed;
+	var intervalMilliseconds = 5000;
+	var intervalId = $interval(_highlightNextActivity, intervalMilliseconds);
+	var currentHighlightedIndex = -1;
 	var activitySubscription = ActivityService.feeds.activity.subscribe(_handleFeedSubscriptionUpdated, _handleFeedSubscriptionError);
-	ActivityService.getActivity(true).then(_onActivityLoaded).catch(_onActivityLoadedError);
 	$scope.$on('$destroy', _onDestroyed);
 
 
@@ -42,24 +47,40 @@ module.exports = angular.module('myApp.components.activity', [
 		EVENT HANDLERS / PRIVATE METHODS
 	************************************ */
 
-	function _onActivityLoaded (data) {
-		$scope.activity = data.activity;
-	}
-
-	function _onActivityLoadedError (exception) {
-		$scope.errorMessage = 'Error fetching activity from APIs';
-		$scope.errorMessageDetails = (exception.message ? exception.message : '');
-	}
-
 	function _handleFeedSubscriptionUpdated (feed) {
+		activityFeed = feed.sort(function (a, b) {
+			return a.__props.timeStamp < b.__props.timeStamp ? 1 : -1;
+		});
 		window.console.log(feed);
+		$scope.$evalAsync();
 	}
 
 	function _handleFeedSubscriptionError (error) {
 		window.console.error(error);
 	}
 
+	function _highlightNextActivity () {
+		if (angular.isArray(activityFeed)) {
+
+			currentHighlightedIndex += 1;
+
+			if (!activityFeed[currentHighlightedIndex]) {
+				currentHighlightedIndex = 0;
+			}
+		}
+	}
+
 	function _onDestroyed () {
 		// activitySubscription.dispose();
+
+		if (intervalId) {
+			$interval.cancel(intervalId);
+		}
 	}
+
+	$scope.getHighlightedItem = function () {
+		var item = activityFeed && activityFeed[currentHighlightedIndex];
+		console.log(item);
+		return item;
+	};
 });

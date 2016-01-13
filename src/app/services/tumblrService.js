@@ -9,6 +9,7 @@ module.exports = angular.module('myApp.services.tumblrService', [
 	$filter
 ) {
 	var mCache = {};
+	var mActiveRequests = [];
 	var m_Accounts = {
 		tumblr : {
 			name  : 'sirkettle',
@@ -50,16 +51,17 @@ module.exports = angular.module('myApp.services.tumblrService', [
 		return post;
 	}
 
-	return {
+	function _requestPosts (useCache) {
+		var deferred = $q.defer();
 
-		getPosts: function (useCache) {
-			var deferred = $q.defer();
+		// store active requests so we can piggy back on the same request is active one already
+		mActiveRequests.push(deferred);
 
-			if (Boolean(useCache && mCache.tumblrPosts)) {
-				deferred.resolve(mCache.tumblrPosts);
-			}
-			else {
-
+		if (Boolean(useCache && mCache.tumblrPosts)) {
+			_resolveActiveRequests(mCache.tumblrPosts);
+		}
+		else {
+			if (mActiveRequests.length === 1) {
 				var tumblrGetUrl = 'http://api.tumblr.com/v2/blog/' + m_Accounts.tumblr.name +
 									'.tumblr.com/posts?callback=JSON_CALLBACK' +
 									'&limit=' + m_Accounts.tumblr.limit +
@@ -70,7 +72,7 @@ module.exports = angular.module('myApp.services.tumblrService', [
 						var posts = [];
 
 						if (!Boolean(aData.response && aData.response.posts.length > 0)) {
-							deferred.resolve(posts);
+							_resolveActiveRequests(posts);
 							return;
 						}
 
@@ -91,16 +93,37 @@ module.exports = angular.module('myApp.services.tumblrService', [
 							}
 						});
 
-						deferred.resolve(posts);
+						_resolveActiveRequests(posts);
 					})
 					.error(function(data, status, headers, config) {
 						// log error
 						window.console.warn('error getting tumblr posts');
-						deferred.reject();
+						_rejectActiveRequests();
 					});
 			}
+		}
 
-			return deferred.promise;
+		return deferred.promise;
+	}
+
+	function _resolveActiveRequests (data) {
+		mActiveRequests.forEach(function (deferredRequest) {
+			deferredRequest.resolve(data);
+		});
+		mActiveRequests = [];
+	}
+
+	function _rejectActiveRequests (data) {
+		mActiveRequests.forEach(function (deferredRequest) {
+			deferredRequest.reject(data);
+		});
+		mActiveRequests = [];
+	}
+
+	return {
+
+		getPosts: function (useCache) {
+			return _requestPosts(useCache);
 		}
 	};
 });

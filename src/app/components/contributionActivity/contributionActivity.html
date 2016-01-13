@@ -1,0 +1,20 @@
+<div class="my-contribution-activity">
+
+	<div ng:if="!activity">
+		<h3>{{ errorMessage || 'Fetching activity from APIs' }}</h3>
+		<p ng:if="errorMessage && errorMessageDetails">{{ errorMessageDetails }}</p>
+	</div>
+
+	<div class="my-blog"> 
+		<ul>
+			<li ng:repeat="post in activity | limitTo: 8"
+			>
+				<my:blog-post
+					data-model="post"
+				></my:blog-post>
+			</li>
+		</ul>
+	</div>
+	
+	<hr>
+</div>

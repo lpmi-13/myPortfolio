@@ -17,6 +17,7 @@ module.exports = angular.module('myApp.services.githubService', [
 	GITHUB_USER
 ) {
 	var mCache = {};
+	var mActiveRequests = [];
 
 	function _getUserObject (user) {
 		var userModel = user;
@@ -68,52 +69,76 @@ module.exports = angular.module('myApp.services.githubService', [
 		return eventModel;
 	}
 
+	function _requestActivity (useCache) {
+		var deferred = $q.defer();
+
+		// store active requests so we can piggy back on the same request is active one already
+		mActiveRequests.push(deferred);
+
+		if (Boolean(useCache && mCache.user && mCache.activity)) {
+			_resolveActiveRequests(mCache);
+		}
+		else {
+			if (mActiveRequests.length === 1) {
+				// $http.get(GITHUB_API_BASE_URL + 'users/' + GITHUB_USER)
+				// 	.success(function(user, status, headers, config) {
+
+				// 		mCache.user = _getUserObject(user);
+
+				// 		$http.get(GITHUB_API_BASE_URL + 'users/' + GITHUB_USER + '/events')
+				// 			.success(function(aData, status, headers, config) {
+				// 				var activity = [];
+
+				// 				if (!angular.isArray(aData)) {
+				// 					window.console.warn('error getting github activity');
+				// 					deferred.reject();
+				// 					return;
+				// 				}
+
+				// 				activity = aData.filter(function (eventData) {
+				// 					return eventData.type === 'PushEvent';
+				// 				}).map(function (eventData) {
+				// 					return _getEventObject(eventData);
+				// 				});
+
+				// 				mCache.activity = activity;
+				// 				_resolveActiveRequests(mCache);
+				// 			})
+				// 			.error(function(data, status, headers, config) {
+				// 				// log error
+				// 				window.console.warn('error getting activity', data);
+				// 				_rejectActiveRequests(data);
+				// 			});
+
+				// 	})
+				// 	.error(function(data, status, headers, config) {
+				// 		// log error
+				// 		window.console.warn('error getting user', data);
+				// 		_rejectActiveRequests(data);
+				// 	});
+			}
+		}
+
+		return deferred.promise;
+	}
+
+	function _resolveActiveRequests (data) {
+		mActiveRequests.forEach(function (deferredRequest) {
+			deferredRequest.resolve(data);
+		});
+		mActiveRequests = [];
+	}
+
+	function _rejectActiveRequests (data) {
+		mActiveRequests.forEach(function (deferredRequest) {
+			deferredRequest.reject(data);
+		});
+		mActiveRequests = [];
+	}
+
 	return {
 		getActivity: function (useCache) {
-			var deferred = $q.defer();
-
-			if (Boolean(useCache && mCache.user && mCache.activity)) {
-				deferred.resolve(mCache);
-			}
-			else {
-				$http.get(GITHUB_API_BASE_URL + 'users/' + GITHUB_USER)
-					.success(function(user, status, headers, config) {
-
-						mCache.user = _getUserObject(user);
-
-						$http.get(GITHUB_API_BASE_URL + 'users/' + GITHUB_USER + '/events')
-							.success(function(aData, status, headers, config) {
-								var activity = [];
-
-								if (!angular.isArray(aData)) {
-									window.console.warn('error getting github activity');
-									deferred.reject();
-									return;
-								}
-
-								aData.forEach(function (eventData) {
-									activity.push(_getEventObject(eventData));
-								});
-
-								mCache.activity = activity;
-
-								deferred.resolve(mCache);
-							})
-							.error(function(data, status, headers, config) {
-								// log error
-								window.console.warn('error getting activity', data);
-								deferred.reject(data);
-							});
-
-					})
-					.error(function(data, status, headers, config) {
-						// log error
-						window.console.warn('error getting user', data);
-						deferred.reject(data);
-					});
-			}
-
-			return deferred.promise;
+			return _requestActivity(useCache);
 		}
 	};
 

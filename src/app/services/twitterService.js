@@ -9,6 +9,7 @@ module.exports = angular.module('myApp.services.twitterService', [
 	$filter
 ) {
 	var mCache = {};
+	var mActiveRequests = [];
 
 	function replaceLink (text) {
 
@@ -78,21 +79,24 @@ module.exports = angular.module('myApp.services.twitterService', [
 		return post;
 	}
 
-	return {
-		getTweets: function (useCache) {
-			var deferred = $q.defer();
+	function _requestTweets (useCache) {
+		var deferred = $q.defer();
 
-			if (Boolean(useCache && mCache.tweets)) {
-				deferred.resolve(mCache.tweets);
-			}
-			else {
+		// store active requests so we can piggy back on the same request is active one already
+		mActiveRequests.push(deferred);
+
+		if (Boolean(useCache && mCache.tweets)) {
+			_resolveActiveRequests(mCache.tweets);
+		}
+		else {
+			if (mActiveRequests.length === 1) {
 				$http.get('http://server.willthirkettle.co.uk/api/tweets.php')
 					.success(function(aData, status, headers, config) {
 						var posts = [];
 
 						if (!angular.isArray(aData)) {
 							window.console.warn('Error getting tweets.', 'Expecting an array of tweets');
-							deferred.reject();
+							_rejectActiveRequests();
 							return;
 						}
 
@@ -101,17 +105,36 @@ module.exports = angular.module('myApp.services.twitterService', [
 						});
 
 						mCache.tweets = posts;
-
-						deferred.resolve(posts);
+						_resolveActiveRequests(mCache.tweets);
 					})
 					.error(function(data, status, headers, config) {
 						// log error
 						window.console.warn('Error getting tweets', arguments);
-						deferred.reject();
+						_rejectActiveRequests(data);
 					});
 			}
+		}
 
-			return deferred.promise;
+		return deferred.promise;
+	}
+
+	function _resolveActiveRequests (data) {
+		mActiveRequests.forEach(function (deferredRequest) {
+			deferredRequest.resolve(data);
+		});
+		mActiveRequests = [];
+	}
+
+	function _rejectActiveRequests (data) {
+		mActiveRequests.forEach(function (deferredRequest) {
+			deferredRequest.reject(data);
+		});
+		mActiveRequests = [];
+	}
+
+	return {
+		getTweets: function (useCache) {
+			return _requestTweets(useCache);
 		}
 	};
 });

@@ -22,10 +22,18 @@ module.exports = angular.module('myApp.components.blogPost', [
 		link: function (scope, elem, attrs, controller) {
 
 			scope._getCaption = function () {
+				if (!scope.model) {
+					return;
+				}
+
 				return $sce.trustAsHtml(scope.model.__props.html.caption);
 			};
 
 			scope._getPostInfo = function () {
+				if (!scope.model) {
+					return;
+				}
+
 				return $sce.trustAsHtml(scope.model.__props.html.postInfo);
 			};
 		}

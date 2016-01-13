@@ -9,13 +9,15 @@ var footerComponent = require('../../components/footer/footer');
 var socialNetworksComponent = require('../../components/socialNetworks/socialNetworks');
 var blogComponent = require('../../components/blog/blog');
 var activityComponent = require('../../components/activity/activity.js');
+var contributionActivityComponent = require('../../components/contributionActivity/contributionActivity.js');
 
 module.exports = angular.module('myApp.views.about', [
 	headerComponent.name,
 	footerComponent.name,
 	socialNetworksComponent.name,
 	blogComponent.name,
-	activityComponent.name
+	activityComponent.name,
+	contributionActivityComponent.name
 ])
 .directive('myViewAbout', function (
 ) {
