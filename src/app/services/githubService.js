@@ -80,42 +80,42 @@ module.exports = angular.module('myApp.services.githubService', [
 		}
 		else {
 			if (mActiveRequests.length === 1) {
-				// $http.get(GITHUB_API_BASE_URL + 'users/' + GITHUB_USER)
-				// 	.success(function(user, status, headers, config) {
+				$http.get(GITHUB_API_BASE_URL + 'users/' + GITHUB_USER)
+					.success(function(user, status, headers, config) {
 
-				// 		mCache.user = _getUserObject(user);
+						mCache.user = _getUserObject(user);
 
-				// 		$http.get(GITHUB_API_BASE_URL + 'users/' + GITHUB_USER + '/events')
-				// 			.success(function(aData, status, headers, config) {
-				// 				var activity = [];
+						$http.get(GITHUB_API_BASE_URL + 'users/' + GITHUB_USER + '/events')
+							.success(function(aData, status, headers, config) {
+								var activity = [];
 
-				// 				if (!angular.isArray(aData)) {
-				// 					window.console.warn('error getting github activity');
-				// 					deferred.reject();
-				// 					return;
-				// 				}
+								if (!angular.isArray(aData)) {
+									window.console.warn('error getting github activity');
+									deferred.reject();
+									return;
+								}
 
-				// 				activity = aData.filter(function (eventData) {
-				// 					return eventData.type === 'PushEvent';
-				// 				}).map(function (eventData) {
-				// 					return _getEventObject(eventData);
-				// 				});
+								activity = aData.filter(function (eventData) {
+									return eventData.type === 'PushEvent';
+								}).map(function (eventData) {
+									return _getEventObject(eventData);
+								});
 
-				// 				mCache.activity = activity;
-				// 				_resolveActiveRequests(mCache);
-				// 			})
-				// 			.error(function(data, status, headers, config) {
-				// 				// log error
-				// 				window.console.warn('error getting activity', data);
-				// 				_rejectActiveRequests(data);
-				// 			});
+								mCache.activity = activity;
+								_resolveActiveRequests(mCache);
+							})
+							.error(function(data, status, headers, config) {
+								// log error
+								window.console.warn('error getting activity', data);
+								_rejectActiveRequests(data);
+							});
 
-				// 	})
-				// 	.error(function(data, status, headers, config) {
-				// 		// log error
-				// 		window.console.warn('error getting user', data);
-				// 		_rejectActiveRequests(data);
-				// 	});
+					})
+					.error(function(data, status, headers, config) {
+						// log error
+						window.console.warn('error getting user', data);
+						_rejectActiveRequests(data);
+					});
 			}
 		}
 

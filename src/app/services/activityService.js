@@ -41,7 +41,6 @@ module.exports = angular.module('myApp.services.activityService', [
 
 		return function () {
 			window.console.log('Activity feed - observer - disposal called');
-			// clearInterval(intervalId);
 		};
 	});
 
