@@ -1,5 +1,20 @@
 [
 	{
+		"id"      : "sisma",
+		"website" : "https://smartwealth.ubs.com",
+		"title"   : "UBS SmartWealth - London",
+		"summary" : "Building a robo-advisor web app using React, Redux, RxJs, Node and Koa",
+		"description" : "Hugely complex project involving over 30 micro-services connecting to core banking systems",
+		"tags" : [
+			"JavaScript", "ES6/7", "React", "Redux", "Chai", "Sinon", "Node.js", "Koa", "Webpack", "HTML(5)", "Flexbox", "CSS(3)", "REST"
+		],
+		"testimonial" : {
+			"html" : "<p>To follow...</p>",
+			"author" : "Arthur Comben, Lead Developer"
+		},
+		"avatarUrl" : "/images/favicon.png"
+	},
+	{
 		"id"      : "fathom",
 		"website" : "http://fathomlondon.com",
 		"title"   : "Fathom - London",

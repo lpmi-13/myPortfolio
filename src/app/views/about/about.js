@@ -47,6 +47,15 @@ module.exports = angular.module('myApp.views.about', [
 				};
 			}
 
+			function _calculateAge (birthday) { // birthday is a date
+				var ageDifMs = Date.now() - birthday.getTime();
+				var ageDate = new Date(ageDifMs); // miliseconds from epoch
+				return Math.abs(ageDate.getUTCFullYear() - 1970);
+			}
+
+			scope._harrisonAge = _calculateAge(new Date('2010-07-13T03:20:00'));
+			scope._elliotAge = _calculateAge(new Date('2012-07-15T17:30:00'));
+
 			_loadImages();
 		}
 	};
