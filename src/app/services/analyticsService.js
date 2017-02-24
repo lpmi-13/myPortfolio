@@ -20,7 +20,7 @@ module.exports = angular.module('myApp.services.analyticsService', [
 
 	function _init () {
 		// track page views
-		$rootScope.$on('$routeChangeSuccess', _trackPageView);
+		$rootScope.$on('$stateChangeSuccess', _trackPageView);
 	}
 
 	return {
