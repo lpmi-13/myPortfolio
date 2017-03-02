@@ -25,7 +25,7 @@ module.exports = angular.module('myApp.services.navigationService', [
 					state: STATE_NAME_PLAY
 				},
 				{
-					title: 'Resume',
+					title: 'Résumé',
 					url: 'http://bit.ly/1cGjA8X'
 				}
 			];

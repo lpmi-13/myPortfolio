@@ -15,11 +15,11 @@ Will Thirkettle - Web design and development
 
 /* SITE */
 
-Live version 3.4.0
+Live version 3.5.0
 
 Language: English
 
-Last update: 2015/12/03
+Last update: 2017/03/01
 
 Tech: JavaScript, AngularJS, ReactJs, HTML5, CSS(3), Sass, Browserify, Gulp...
 
